@@ -27,7 +27,7 @@ class Equipamento(models.Model):
     nome = models.CharField(max_length=255) 
     quantidade = models.PositiveIntegerField(default=1)
     validade = models.DateTimeField(default=datetime.now)
-    categoria = models.CharField(max_length=20, choices=CATEGORIA_EPI)
+    categoria = models.CharField(max_length=100, choices=CATEGORIA_EPI)
 
 
     def __str__(self) -> str:

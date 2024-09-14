@@ -17,8 +17,11 @@ python manage.py migrate
 
 -> Executando
 python manage.py runserver
-```
 
+
+-> Ou
+docker-compose up --build
+```
 
 ## Requisitos Funcionais e Não Funcionais
 

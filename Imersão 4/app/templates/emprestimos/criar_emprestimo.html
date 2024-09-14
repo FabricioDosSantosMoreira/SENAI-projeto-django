@@ -1,0 +1,75 @@
+{% extends "global/index.html" %}
+
+{% block title %}Empréstimo{% endblock title %}
+    
+{% block content %}
+
+<style>
+    label.dashed {border-style: solid;}
+</style>
+
+<div class="container d-flex justify-content-center" style="margin-top: 60px; margin-bottom: 100px;">
+    <form method="post" class="form-bg-shadow w-50 p-4">
+        {% csrf_token %}
+        
+        {% if infos %}
+            {% for info in infos %}
+                <div class="alert alert-danger">
+                    <strong>Aviso</strong> - <a href="#" class="alert-link">{{ info }}</a>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <!-- Quantidade de Equipamentos do Empréstimo -->
+        <div class="mb-3 d-flex align-items-center justify-content-between">
+            <label for="{{ form.quantidade.id_for_label }}" class="form-label me-3 dashed text-center">Quantidade</label>
+            {{ form.quantidade }}
+            {% for error in form.errors %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <!-- Usuário do Empréstimo -->
+        <div class="mb-3 d-flex align-items-center justify-content-between">
+            <label for="{{ form.data_emprestimo.id_for_label }}" class="form-label me-3 dashed text-center">Usuário</label>
+            {{ form.usuario }}
+            {% for error in form.errors %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+         <!-- Equipamento do Empréstimo -->
+         <div class="mb-3 d-flex align-items-center justify-content-between">
+            <label for="{{ form.equipamento.id_for_label }}" class="form-label me-3 dashed text-center">Equipamento</label>
+            {{ form.equipamento }}
+            {% for error in form.errors %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <!-- Data de Empréstimo -->
+        <div class="mb-3 d-flex align-items-center justify-content-between">
+            <label for="{{ form.data_emprestimo.id_for_label }}" class="form-label me-3 dashed text-center">Data Empréstimo</label>
+            {{ form.data_emprestimo }}
+            {% for error in form.errors %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <!-- Data de Devolução -->
+        <div class="mb-3 d-flex align-items-center justify-content-between">
+            <label for="{{ form.data_devolucao.id_for_label }}" class="form-label me-3 dashed text-center">Data Devolução</label>
+            {{ form.data_devolucao }}
+            {% for error in form.errors %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <!-- Botão de Submissão -->
+        <div class="text-center mb-4 mt-4">
+            <button type="submit" class="btn custom-header-button" style="width: 250px;">Criar</button>
+        </div>
+    </form>
+</div>
+
+{% endblock content %}

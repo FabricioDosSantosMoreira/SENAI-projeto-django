@@ -46,5 +46,5 @@ class Emprestimo(models.Model):
 
 
     def __str__(self) -> str:
-        return self.data_emprestimo
+        return str(self.data_emprestimo)
     

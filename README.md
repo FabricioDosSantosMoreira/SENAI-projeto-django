@@ -1,12 +1,15 @@
 # ⛑ Gerenciamento de EPI's
  
-Projeto em Django sobre EPI's com Frontend 
-O projeto tem como base um pedido que envolve gerar um site html funcional para uma empresa de "aluguel" de equipamentos de EPI. 
-Para a realização do projeto tivemos que identificar os principais produto, categorias de EPI para que fossem feitas no futuro os emprestimos dos equipamentos e possiveis cargos dentro da empresa. 
-O site tem como base atender a necessidade do requerimento de pedidos dos clientes, não permitindo com que mais do que a quantidade disponivel no estoque no momento preente seja requerida pelos clientes. Clientes podem escolher produto, quantidade e quando irão alugar os equipamentos. 
+O presente projeto consiste no desenvolvimento de um sistema de gerenciamento de Equipamentos de Proteção Individual (EPIs) para uma empresa de construção civil, com o objetivo de otimizar o controle e a utilização dos EPIs pelos colaboradores. O sistema tem como objetivo principal garantir que os colaboradores estejam utilizando os EPIs adequados durante a execução de suas tarefas. Para isso, o sistema permite que os colaboradores realizem a solicitação de equipamentos, com controle sobre a quantidade disponível em estoque e as datas de empréstimo e devolução.
+
+Funcionalidades Principais:
+- Cadastro de EPI's
+- Cadastro Usuário
+- Cadastro de Empréstimos
 
 ![Página Inicial](./docs/home.png)
-  
+
+
 ## Executando o Projeto
 
 ```shell
@@ -32,6 +35,7 @@ Requisitos Funcionais:
 - O sistema deve permitir deletar colaboradores, EPI’s e empréstimos.
 - O sistema deve permitir cadastrar um empréstimo de EPIs a um colaborador.
 - O sistema deve permitir o registro da devolução de EPIs, alterando o status do empréstimo.
+- O sistema deve permitir que somente colaboradores possam criar empréstimos
 
 Requisitos Não Funcionais:
 - O sistema deve garantir que todos os dados sejam armazenados de forma segura, garantindo a persistência dos dados

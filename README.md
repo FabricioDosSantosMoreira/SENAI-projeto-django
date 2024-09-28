@@ -44,4 +44,4 @@ Requisitos Não Funcionais:
 
 - [Fabrício dos Santos Moreira] (https://github.com/FabricioDosSantosMoreira)
 - [Guilherme Stadnicki da Silva] (https://github.com/guilhermestd)
-- [Maria Figueiredo] (https://github.com/mariaeduardafigueiredo)
+- [Maria Eduarda Figueiredo] (https://github.com/mariaeduardafigueiredo)

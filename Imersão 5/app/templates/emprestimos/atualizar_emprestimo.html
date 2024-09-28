@@ -1,0 +1,76 @@
+{% extends "global/index.html" %}
+
+{% block title %}Empréstimo{% endblock title %}
+    
+{% block content %}
+
+<div class="container mt-5 d-flex justify-content-center">
+    <form method="post" class="w-50"> 
+        {% csrf_token %}
+       
+        {% if infos %}
+            {% for info in infos %}
+            <div class="alert alert-danger">
+                <strong>Aviso</strong> - <a href="#" class="alert-link">{{ info }}</a>
+            </div>
+            {% endfor %}
+        {% endif %}
+
+        <!-- Título do Formulário -->
+        <div class="mb-4 text-center">
+            <h1>Atualizar Empréstimo</h1>
+        </div>
+        
+        <!-- Quantidade de Equipamentos Empréstimo -->
+        <div class="mb-3">
+            <label for="{{ form.data_emprestimo.id_for_label }}" class="form-label">Quantidade</label>
+            {{ form.quantidade }}
+            {% for error in form.status.errors %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+        
+        <!-- Usuário do Empréstimo -->
+        <div class="mb-3">
+            <label for="{{ form.usuario.id_for_label }}" class="form-label">Usuário</label>
+            {{ form.usuario }}
+            {% for error in form.status.errors %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <!-- Equipamento do Empréstimo -->
+        <div class="mb-3">
+            <label for="{{ form.equipamento.id_for_label }}" class="form-label">Equipamento</label>
+            {{ form.equipamento }}
+            {% for error in form.status.errors %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <!-- Data de Empréstimo -->
+        <div class="mb-3">
+            <label for="{{ form.data_emprestimo.id_for_label }}" class="form-label">Data de Empréstimo</label>
+            {{ form.data_emprestimo }}
+            {% for error in form.status.errors %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <!-- Login do Usuário -->
+        <div class="mb-3">
+            <label for="{{ form.data_devolucao.id_for_label }}" class="form-label">Data de Devolução</label>
+            {{ form.data_devolucao }}
+            {% for error in form.status.errors %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <!-- Botão de Submissão do Formulário-->
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Atualizar</button>
+        </div>
+    </form>
+</div>
+
+{% endblock content %}

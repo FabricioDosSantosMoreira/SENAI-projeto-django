@@ -1,0 +1,53 @@
+{% extends "global/index.html" %}
+
+{% load static %}
+
+{% block title %}Empréstimos{% endblock title %}
+
+{% block content %}
+
+<div class="container mt-3" style="width: 100%;">
+
+    <div class="d-flex justify-content align-items-center" style="margin-top: 100px;">
+      <h2>Tabela de Empréstimos Cadastrados</h2>
+      <a href="{% url 'criar_emprestimo' %}" class="btn custom-header-button" style="margin-right: 35px;">Adicionar Empréstimo</a>
+  	</div>
+  
+    <table class="table table-striped mt-3">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Quantidade</th>
+          <th>Usuário</th>
+          <th>Equipamento</th>
+          <th>Data Empréstimo</th>
+          <th>Data Devolução</th>
+          <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for emprestimo in emprestimos %}
+        <tr>
+            <td>{{ emprestimo.id }}</td>
+            <td>{{ emprestimo.quantidade }}</td>
+            <td>{{ emprestimo.usuario }}</td>
+            <td>{{ emprestimo.equipamento }}</td>
+            <td>{{ emprestimo.data_emprestimo }}</td>
+            <td>{{ emprestimo.data_devolucao }}</td>
+            <td>
+                <a href="{% url 'atualizar_emprestimo' emprestimo.id %}" class="btn btn-warning btn-sm">Editar</a>
+                <a href="{% url 'deletar_emprestimo' emprestimo.id %}" class="btn btn-danger btn-sm">Remover</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="7" class="text-center">
+                Não há empréstimos para serem listados!
+            </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+</div>
+  
+{% endblock content %}

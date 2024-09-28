@@ -1,0 +1,58 @@
+{% extends "global/index.html" %}
+
+{% block title %}EPI's{% endblock title %}
+    
+{% block content %}
+
+<style>
+    label.dashed {border-style: solid;}
+</style>
+
+<div class="container d-flex justify-content-center" style="margin-top: 60px; margin-bottom: 100px;">
+    <form method="post" class="form-bg-shadow w-50 p-4">
+        {% csrf_token %}
+
+        <!-- Nome do Equipamento -->
+        <div class="mb-3 d-flex align-items-center justify-content-between">
+            <label for="{{ form.nome.id_for_label }}" class="form-label me-3 dashed text-center">Nome</label>
+            {{ form.nome }}
+            {% for error in form.errors %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <!-- Quantidade do Equipamento -->
+        <div class="mb-3 d-flex align-items-center justify-content-between">
+            <label for="{{ form.quantidade.id_for_label }}" class="form-label me-3 dashed text-center">Quantidade</label>
+            {{ form.quantidade }}
+            {% for error in form.cliente.errors %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <!-- Validade do Equipamento -->
+        <div class="mb-3 d-flex align-items-center justify-content-between">
+            <label for="{{ form.validade.id_for_label }}" class="form-label me-3 dashed text-center">Validade</label>
+            {{ form.validade }}
+            {% for error in form.cliente.errors %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+        
+        <!-- Categoria do Equipamento -->
+        <div class="mb-3 d-flex align-items-center justify-content-between">
+            <label for="{{ form.categoria.id_for_label }}" class="form-label me-3 dashed text-center">Categoria</label>
+            {{ form.categoria }}
+            {% for error in form.status.errors %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+        
+        <!-- Botão de Submissão -->
+        <div class="text-center mb-4 mt-4">
+            <button type="submit" class="btn custom-header-button" style="width: 250px;">Criar</button>
+        </div>
+    </form>
+</div>
+
+{% endblock content %}

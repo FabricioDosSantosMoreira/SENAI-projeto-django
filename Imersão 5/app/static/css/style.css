@@ -1,0 +1,105 @@
+/* Estilos global */
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 600;
+}
+
+/* Cor de fundo do Header */
+.bg-custom-yellow {
+    background-color: #ffc527; /* Cor amarela */
+}
+
+/* Fonte do título no Header*/
+.navbar-brand .brand-text {
+    font-family: "Open Sans", sans-serif;
+    font-size: 24px; 
+    color: #9c2400; 
+    font-weight: bold; 
+}
+
+/* Botões do Header*/
+.custom-header-button {
+    background-color: #ffa600 !important;
+    border-color: #9c2400 !important; 
+    color: #000000 !important; 
+}
+
+.custom-header-button:hover {
+    background-color: #c70039 !important;
+    border-color: #c70039 !important;
+}
+
+/* Espaçamento no canto direito do Header */
+.navbar-right-spacement {
+    margin-right: 50px; 
+}
+
+/* Estilo dos textos */
+.text-center {
+    text-align: center;
+}
+
+/* Estilos do Footer */
+.footer {
+    background-color: transparent; 
+
+    position: fixed;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    height: 45px;
+}
+
+.footer-text {
+    color: #FFFFFF;
+
+    font-size: 18px;
+    font-weight: 500;
+
+    text-align: center;
+    margin: 0;
+}
+
+.form-bg-shadow {
+    background-color: #ffdc67; /* Cor clara de fundo */
+    box-shadow: 2px 2px 10px #9c2400; /* Sombra suave */
+    border-radius: 8px; /* Bordas arredondadas */
+    padding: 30px; /* Espaçamento interno */
+}
+.d-flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.form-label {
+    flex: 1; /* Define a largura da label */
+}
+.me-3 {
+    margin-right: 2rem; /* Espaçamento entre label e input */
+}
+.mb-3 input, .mb-3 select {
+    flex: 2; /* Define a largura do campo */
+}
+
+/* Tabelas */
+.table {
+    width: 100%;        /* Define a largura como 100% do contêiner */
+    max-width: 100%;    /* Define a largura máxima da tabela */
+    table-layout: auto; /* Garante que as colunas tenham tamanho auto */
+}
+
+.table th, .table td {
+    word-wrap: break-word; /* Permite que o texto se quebre em várias linhas se necessário */
+    text-align: left;      /* Centraliza o texto nas células */
+}
+
+.background-gray {
+    background-color: #ffae00;
+}

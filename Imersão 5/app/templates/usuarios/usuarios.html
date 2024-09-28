@@ -1,0 +1,55 @@
+{% extends "global/index.html" %}
+
+{% load static %}
+
+{% block title %}Usuários{% endblock title %}
+
+{% block content %}
+
+<div class="container mt-3" style="width: 100%;">
+
+    <div class="d-flex justify-content align-items-center" style="margin-top: 100px;">
+      <h2>Tabela de Usuario Cadastrados</h2>
+      <a href="{% url 'criar_usuario' %}" class="btn custom-header-button" style="margin-right: 35px;">Adicionar Usuário</a>
+  	</div>
+  
+    <table class="table table-striped mt-3">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Nome</th>
+          <th>Login</th>
+          <th>Senha</th>
+          <th>Tipo</th>
+          <th>Cargo</th>
+          <th>Data de Admissão</th>
+          <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for usuario in usuarios %}
+        <tr>
+            <td>{{ usuario.id }}</td>
+            <td>{{ usuario.nome }}</td>
+            <td>{{ usuario.login }}</td>
+            <td>{{ usuario.senha }}</td>
+            <td>{{ usuario.tipo }}</td>
+            <td>{{ usuario.cargo }}</td>
+            <td>{{ usuario.data_admissao }}</td>
+            <td>
+                <a href="{% url 'atualizar_usuario' usuario.id %}" class="btn btn-warning btn-sm">Editar</a>
+                <a href="{% url 'deletar_usuario' usuario.id %}" class="btn btn-danger btn-sm">Remover</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="8" class="text-center">
+                Não há usuários para serem listados!
+            </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+</div>
+  
+{% endblock content %}

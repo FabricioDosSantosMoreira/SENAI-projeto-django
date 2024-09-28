@@ -5,7 +5,8 @@ O projeto tem como base um pedido que envolve gerar um site html funcional para 
 Para a realização do projeto tivemos que identificar os principais produto, categorias de EPI para que fossem feitas no futuro os emprestimos dos equipamentos e possiveis cargos dentro da empresa. 
 O site tem como base atender a necessidade do requerimento de pedidos dos clientes, não permitindo com que mais do que a quantidade disponivel no estoque no momento preente seja requerida pelos clientes. Clientes podem escolher produto, quantidade e quando irão alugar os equipamentos. 
 
-
+![Página Inicial](./docs/home.png)
+  
 ## Executando o Projeto
 
 ```shell

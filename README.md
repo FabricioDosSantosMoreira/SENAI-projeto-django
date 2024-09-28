@@ -9,7 +9,7 @@ O site tem como base atender a necessidade do requerimento de pedidos dos client
 ## Executando o Projeto
 
 ```shell
-cd '.\Imersão 4\'
+cd '.\Imersão 5\'
 
 -> Criando e executando as migrações:
 python manage.py makemigrations app
@@ -44,3 +44,4 @@ Requisitos Não Funcionais:
 
 - [Fabrício dos Santos Moreira] (https://github.com/FabricioDosSantosMoreira)
 - [Guilherme Stadnicki da Silva] (https://github.com/guilhermestd)
+- [Maria Eduarda Figueiredo] (https://github.com/mariaeduardafigueiredo)

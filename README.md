@@ -1,11 +1,6 @@
-# ⛑ Gerenciamento de EPI's
+# 🚧 ProTechHub | Gerenciamento de EPI's
  
 O presente projeto consiste no desenvolvimento de um sistema de gerenciamento de Equipamentos de Proteção Individual (EPIs) para uma empresa de construção civil, com o objetivo de otimizar o controle e a utilização dos EPIs pelos colaboradores. O sistema tem como objetivo principal garantir que os colaboradores estejam utilizando os EPIs adequados durante a execução de suas tarefas. Para isso, o sistema permite que os colaboradores realizem a solicitação de equipamentos, com controle sobre a quantidade disponível em estoque e as datas de empréstimo e devolução.
-
-Funcionalidades Principais:
-- Cadastro de EPI's
-- Cadastro Usuário
-- Cadastro de Empréstimos
 
 ![Página Inicial](./docs/home.png)
 

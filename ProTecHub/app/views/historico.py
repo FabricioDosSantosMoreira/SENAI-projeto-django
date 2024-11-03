@@ -12,7 +12,7 @@ from django.core.handlers.wsgi import WSGIRequest
 from app.models import Usuario, Historico, Emprestimo
 from app.forms import HistoricoForm
 from django.contrib.auth.decorators import login_required
-from .base import home
+from .base import home, logar
 from app.utils import obter_data_resumida
 from app.utils.enums import StatusEmprestimo
 
@@ -24,11 +24,11 @@ def obter_historico(request: WSGIRequest) -> HttpResponse:
     # O Usuário está autenticado?
     if not user.is_authenticated:
         messages.error(request, 'Você não está logado!')
-        return redirect(login)
+        return redirect(logar)
 
     # Verifica se o 'ROLE' do 'Usuário' não é 'Admin' ou 'Supervisor'
     if not user.groups.filter(name__in=['Admin', 'Supervisor']).exists():
-        messages.error(request, 'Você não possui permissão!')
+        messages.warning(request, 'Você não possui permissão!')
         return redirect(home)   
 
     status_query = request.GET.get('search-by-status')
@@ -78,12 +78,12 @@ def arquivar_emprestimo_no_historico(request: WSGIRequest, id_emprestimo: int) -
     # O Usuário está autenticado?
     if not user.is_authenticated:
         messages.error(request, 'Você não está logado!')
-        return redirect(login)
+        return redirect(logar)
 
     # Verifica se o 'ROLE' do 'Usuário' não é 'Admin' ou 'Supervisor'
     if not user.groups.filter(name__in=['Admin', 'Supervisor']).exists():
-        messages.error(request, 'Você não possui permissão!')
-        return redirect(login)
+        messages.warning(request, 'Você não possui permissão!')
+        return redirect(home)
     
     emprestimo = get_object_or_404(Emprestimo, id=id_emprestimo)
     nome_usuario = emprestimo.usuario.nome
@@ -138,11 +138,11 @@ def deletar_item_historico(request: WSGIRequest, id: int) -> HttpResponse:
     # O Usuário está autenticado?
     if not user.is_authenticated:
         messages.error(request, 'Você não está logado!')
-        return redirect(login)
+        return redirect(logar)
 
     # Verifica se o 'ROLE' do 'Usuário' não é 'Admin' ou 'Supervisor'
     if not user.groups.filter(name__in=['Admin', 'Supervisor']).exists():
-        messages.error(request, 'Você não possui permissão!')
+        messages.warning(request, 'Você não possui permissão!')
         return redirect(home)    
 
     item_historico = get_object_or_404(Historico, id=id)
@@ -159,12 +159,12 @@ def atualizar_item_historico(request: WSGIRequest, id: int) -> HttpResponse:
     # O Usuário está autenticado?
     if not user.is_authenticated:
         messages.error(request, 'Você não está logado!')
-        return redirect(login)
+        return redirect(logar)
 
     # Verifica se o 'ROLE' do 'Usuário' não é 'Admin' ou 'Supervisor'
     if not user.groups.filter(name__in=['Admin', 'Supervisor']).exists():
-        messages.error(request, 'Você não possui permissão!')
-        return redirect(login)
+        messages.warning(request, 'Você não possui permissão!')
+        return redirect(home)
 
     item_historico = get_object_or_404(Historico, id=id) 
 

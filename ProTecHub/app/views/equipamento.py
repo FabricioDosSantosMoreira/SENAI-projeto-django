@@ -13,7 +13,7 @@ from app.models import Usuario, Equipamento
 from app.forms import EquipamentoForm
 from django.contrib.auth.decorators import login_required
 import pytz
-from .base import home
+from .base import home, logar
 from app.utils import obter_data_resumida
 
 
@@ -24,11 +24,11 @@ def obter_equipamentos(request: WSGIRequest) -> HttpResponse:
     # O Usuário está autenticado?
     if not user.is_authenticated:
         messages.error(request, 'Você não está logado!')
-        return redirect(login)
+        return redirect(logar)
 
     # Verifica se o 'ROLE' do 'Usuário' não é 'Admin' ou 'Supervisor'
     if not user.groups.filter(name__in=['Admin', 'Supervisor']).exists():
-        messages.error(request, 'Você não possui permissão!')
+        messages.warning(request, 'Você não possui permissão!')
         return redirect(home)   
 
     query = request.GET.get('search')
@@ -61,12 +61,12 @@ def criar_equipamento(request: WSGIRequest) -> HttpResponse:
     # O Usuário está autenticado?
     if not user.is_authenticated:
         messages.error(request, 'Você não está logado!')
-        return redirect(login)
+        return redirect(logar)
 
     # Verifica se o 'ROLE' do 'Usuário' não é 'Admin' ou 'Supervisor'
     if not user.groups.filter(name__in=['Admin', 'Supervisor']).exists():
-        messages.error(request, 'Você não possui permissão!')
-        return redirect(login)
+        messages.warning(request, 'Você não possui permissão!')
+        return redirect(home)
 
     if request.method == 'POST':
         form = EquipamentoForm(request.POST)
@@ -98,11 +98,11 @@ def deletar_equipamento(request: WSGIRequest, id: int) -> HttpResponse:
     # O Usuário está autenticado?
     if not user.is_authenticated:
         messages.error(request, 'Você não está logado!')
-        return redirect(login)
+        return redirect(logar)
 
     # Verifica se o 'ROLE' do 'Usuário' não é 'Admin' ou 'Supervisor'
     if not user.groups.filter(name__in=['Admin', 'Supervisor']).exists():
-        messages.error(request, 'Você não possui permissão!')
+        messages.warning(request, 'Você não possui permissão!')
         return redirect(home)    
 
     equipamento = get_object_or_404(Equipamento, id=id)
@@ -119,12 +119,12 @@ def atualizar_equipamento(request: WSGIRequest, id: int) -> HttpResponse:
     # O Usuário está autenticado?
     if not user.is_authenticated:
         messages.error(request, 'Você não está logado!')
-        return redirect(login)
+        return redirect(logar)
 
     # Verifica se o 'ROLE' do 'Usuário' não é 'Admin' ou 'Supervisor'
     if not user.groups.filter(name__in=['Admin', 'Supervisor']).exists():
-        messages.error(request, 'Você não possui permissão!')
-        return redirect(login)
+        messages.warning(request, 'Você não possui permissão!')
+        return redirect(home)
 
     equipamento: Equipamento = get_object_or_404(Equipamento, id=id) 
 

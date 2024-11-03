@@ -12,7 +12,7 @@ from django.core.handlers.wsgi import WSGIRequest
 from app.models import Usuario, Equipamento, Emprestimo
 from app.forms import EmprestimoForm
 from django.contrib.auth.decorators import login_required
-from .base import home
+from .base import home, logar
 from app.utils import obter_data_resumida
 
 from app.utils.enums import StatusEmprestimo
@@ -24,11 +24,11 @@ def obter_emprestimos(request: WSGIRequest) -> HttpResponse:
     # O Usuário está autenticado?
     if not user.is_authenticated:
         messages.error(request, 'Você não está logado!')
-        return redirect(login)
+        return redirect(logar)
 
     # Verifica se o 'ROLE' do 'Usuário' não é 'Admin' ou 'Supervisor' ou 'Colaborador'
     if not user.groups.filter(name__in=['Admin', 'Supervisor', 'Colaborador']).exists():
-        messages.error(request, 'Você não possui permissão!')
+        messages.warning(request, 'Você não possui permissão!')
         return redirect(home)   
 
     query = request.GET.get('search')
@@ -68,12 +68,12 @@ def criar_emprestimo(request: WSGIRequest) -> HttpResponse:
     # O Usuário está autenticado?
     if not user.is_authenticated:
         messages.error(request, 'Você não está logado!')
-        return redirect(login)
+        return redirect(logar)
 
     # Verifica se o 'ROLE' do 'Usuário' não é 'Admin' ou 'Supervisor'
     if not user.groups.filter(name__in=['Admin', 'Supervisor']).exists():
-        messages.error(request, 'Você não possui permissão!')
-        return redirect(login)
+        messages.warning(request, 'Você não possui permissão!')
+        return redirect(home)
 
     if request.method == 'POST':
         permitir_emprestimo = True
@@ -119,11 +119,11 @@ def deletar_emprestimo(request: WSGIRequest, id: int) -> HttpResponse:
     # O Usuário está autenticado?
     if not user.is_authenticated:
         messages.error(request, 'Você não está logado!')
-        return redirect(login)
+        return redirect(logar)
 
     # Verifica se o 'ROLE' do 'Usuário' não é 'Admin' ou 'Supervisor' ou 'Colaborador'
     if not user.groups.filter(name__in=['Admin', 'Supervisor', 'Colaborador']).exists():
-        messages.error(request, 'Você não possui permissão!')
+        messages.warning(request, 'Você não possui permissão!')
         return redirect(home)    
 
     emprestimo = get_object_or_404(Emprestimo, id=id)
@@ -139,13 +139,13 @@ def atualizar_emprestimo(request: WSGIRequest, id: int) -> HttpResponse:
 
     # O Usuário está autenticado?
     if not user.is_authenticated:
-        messages.warning(request, 'Você não está logado!')
-        return redirect(login)
+        messages.error(request, 'Você não está logado!')
+        return redirect(logar)
 
     # Verifica se o 'ROLE' do 'Usuário' não é 'Admin' ou 'Supervisor' ou 'Colaborador'
     if not user.groups.filter(name__in=['Admin', 'Supervisor', 'Colaborador']).exists():
         messages.warning(request, 'Você não possui permissão!')
-        return redirect(login)
+        return redirect(home)
 
     emprestimo = get_object_or_404(Emprestimo, id=id) 
     

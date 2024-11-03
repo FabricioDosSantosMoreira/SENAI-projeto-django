@@ -11,7 +11,7 @@ from django.core.handlers.wsgi import WSGIRequest
 from django.conf import settings
 
 import pytz
-from .base import home
+from .base import home, logar
 from app.models import Usuario
 from app.forms import UsuarioForm
 from app.utils.enums import TipoUsuario
@@ -26,11 +26,11 @@ def obter_usuarios(request: WSGIRequest) -> HttpResponse:
     # O Usuário está autenticado?
     if not user.is_authenticated:
         messages.error(request, 'Você não está logado!')
-        return redirect(login)
+        return redirect(logar)
 
     # Verifica se o 'ROLE' do 'Usuário' não é 'Admin'
     if not user.groups.filter(name='Admin').exists():
-        messages.error(request, 'Você não possui permissão!')
+        messages.warning(request, 'Você não possui permissão!')
         return redirect(home)    
     
     query = request.GET.get('search')
@@ -63,12 +63,12 @@ def criar_usuario(request: WSGIRequest) -> HttpResponse:
     # O Usuário está autenticado?
     if not user.is_authenticated:
         messages.error(request, 'Você não está logado!')
-        return redirect(login)
+        return redirect(logar)
 
     # Verifica se o 'ROLE' do 'Usuário' não é 'Admin'
     if not user.groups.filter(name='Admin').exists():
-        messages.error(request, 'Você não possui permissão!')
-        return redirect(login)
+        messages.warning(request, 'Você não possui permissão!')
+        return redirect(home)
 
     if request.method == 'POST':
         form = UsuarioForm(request.POST, request.FILES)
@@ -100,11 +100,11 @@ def deletar_usuario(request: WSGIRequest, id: int) -> HttpResponse:
     # O Usuário está autenticado?
     if not user.is_authenticated:
         messages.error(request, 'Você não está logado!')
-        return redirect(login)
+        return redirect(logar)
 
     # Verifica se o 'ROLE' do 'Usuário' não é 'Admin'
     if not user.groups.filter(name='Admin').exists():
-        messages.error(request, 'Você não possui permissão!')
+        messages.warning(request, 'Você não possui permissão!')
         return redirect(home)    
 
     usuario = get_object_or_404(Usuario, id=id)
@@ -125,8 +125,8 @@ def atualizar_usuario(request: WSGIRequest, id: int) -> HttpResponse:
 
     # Verifica se o 'ROLE' do 'Usuário' não é 'Admin'
     if not user.groups.filter(name='Admin').exists():
-        messages.error(request, 'Você não possui permissão!')
-        return redirect(login)
+        messages.warning(request, 'Você não possui permissão!')
+        return redirect(logar)
     
     usuario = get_object_or_404(Usuario, id=id) 
 

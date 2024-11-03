@@ -15,7 +15,6 @@ from django.shortcuts import redirect, render
 def interno(request: WSGIRequest) -> HttpResponse:
     if not request.user.is_authenticated:
         messages.error(request, 'Você não está logado!')
-
         return redirect(logar)
     
     user_groups = request.user.groups.values_list('name', flat=True)

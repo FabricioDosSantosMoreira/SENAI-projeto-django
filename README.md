@@ -37,7 +37,6 @@ poetry install
 ## 🟢 Execução
 ```bash
 # ⭕ OBS - Necessário ter o MAKE:
-
 make first-run
 
 # Ou, utilize:

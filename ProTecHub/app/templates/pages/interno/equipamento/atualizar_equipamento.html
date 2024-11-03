@@ -1,0 +1,67 @@
+{% extends "global/secondary_base.html" %} 
+
+{% load static %} 
+
+{% block title %}ProTecHub | Editar Equipamento{% endblock title %}
+
+{% block content %}
+<body class="gray-linear-gradient-background">
+
+<div class="form-container">
+  <div class="form-wrapper">
+    <h1 class="form-title">Editar Equipamento</h1>
+
+    <!-- Exibe as mensagens com as respectivas classes de estilos -->
+    {% if messages %} {% for message in messages %}
+    <div class="column form-message {{ message.tags }}">
+      <div>{{ message }}</div>
+    </div>
+    {% endfor %} {% endif %}
+
+    <!-- Exibe mensagens de erro não associados a campos específicos -->
+    {% if form.non_field_errors %}
+    <div class="form-message error">{{ form.non_field_errors }}</div>
+    {% endif %}
+
+    <!-- Exibe mensagens de erro de campo específicos -->
+    {% for field in form %} {% if field.errors %}
+    <div class="form-message error">{{ field.errors.as_text }}</div>
+    {% endif %} {% endfor %}
+
+    <form action="{% url 'atualizar_equipamento' equipamento.id %}" method="POST">
+      {% csrf_token %}
+      <div class="column">
+        <!-- Nome do Equipamento -->
+        <div class="form-input-group">
+          <label for="{{ form.nome.id_for_label }}">Nome</label>
+          {{ form.nome }}
+        </div>
+
+        <!-- Quantidade Total do Equipamento -->
+        <div class="form-input-group">
+          <label for="{{ form.quantidade_total.id_for_label }}">Quantidade Total</label>
+          {{ form.quantidade_total }}
+        </div>
+
+        <!-- Validade do Equipamento -->
+        <div class="form-input-group">
+          <label for="{{ form.validade.id_for_label }}">Validade</label>
+          {{ form.validade }}
+        </div>
+
+        <!-- Categoria do Equipamento -->
+        <div class="form-input-group">
+          <label for="{{ form.categoria.id_for_label }}">Categoria</label>
+          {{ form.categoria }}
+        </div>
+
+        <!-- Botão de Submissão -->
+        <button type="submit" class="form-submit-button">Atualizar</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock content %}
+
+<!-- Remove o Footer -->
+{% block footer %}{% endblock footer %}

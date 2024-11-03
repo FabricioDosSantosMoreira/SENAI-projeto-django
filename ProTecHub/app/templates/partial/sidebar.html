@@ -1,0 +1,50 @@
+{% load static %} 
+
+{% block sidebar %}
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-divider"></div>
+
+  <div class="column sidebar-interactive-items">
+    <button class="sidebar-interactive-button" onclick="toggleSidebarInteractiveItem(this, 1)">► Usuários</button>
+    <div class="sidebar-interactive-item" id="interactive-item-for-id-1">
+      <div class="column">
+        <a href="{% url 'obter_usuarios' %}">➜ Listar</a>
+        <a href="{% url 'criar_usuario' %}">➜ Cadastrar</a>
+      </div>
+    </div>
+
+    <button class="sidebar-interactive-button" onclick="toggleSidebarInteractiveItem(this, 2)">► Equipamentos</button>
+    <div class="sidebar-interactive-item" id="interactive-item-for-id-2">
+      <div class="column">
+        <a href="{% url 'obter_equipamentos' %}">➜ Listar</a>
+        <a href="{% url 'criar_equipamento' %}">➜ Cadastrar</a>
+      </div>
+    </div>
+
+    <button class="sidebar-interactive-button" onclick="toggleSidebarInteractiveItem(this, 3)">► Empréstimos</button>
+    <div class="sidebar-interactive-item" id="interactive-item-for-id-3">
+      <div class="column">
+        <a href="{% url 'obter_emprestimos' %}">➜ Listar</a>
+        <a href="{% url 'criar_emprestimo' %}">➜ Cadastrar</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar-divider"></div>
+    <div class="column sidebar-interactive-items">
+      <a href="{% url 'obter_historico' %}" class="sidebar-item">➜ Histórico</a>
+    </div>
+  <div class="sidebar-divider"></div>
+
+  <div class="column sidebar-interactive-items">
+    <a href="{% url 'sobre' %}" class="sidebar-item">➜ Sobre nós</a>
+    <a href="{% url 'contato' %}" class="sidebar-item">➜ Contato</a>
+  </div>
+
+  <div class="sidebar-divider"></div>
+</aside>
+
+<button class="sidebar-button" onclick="toggleSidebar()">
+  <img src="{% static 'icons/icons8-view-quilt-50.png' %}" alt="Ícone" />
+</button>
+{% endblock sidebar %}

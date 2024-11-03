@@ -1,0 +1,81 @@
+{% extends "global/secondary_base.html" %} 
+
+{% load static %} 
+
+{% block title %}ProTecHub | Criar Usuário{% endblock title %} 
+
+{% block content %}
+<body class="gray-linear-gradient-background">
+
+<div class="form-container">
+  <div class="form-wrapper">
+    <h1 class="form-title">Criar Usuário</h1>
+
+    <!-- Exibe as mensagens com as respectivas classes de estilos -->
+    {% if messages %} {% for message in messages %}
+    <div class="column form-message {{ message.tags }}">
+      <div>{{ message }}</div>
+    </div>
+    {% endfor %} {% endif %}
+
+    <!-- Exibe mensagens de erro não associados a campos específicos -->
+    {% if form.non_field_errors %}
+    <div class="form-message error">{{ form.non_field_errors }}</div>
+    {% endif %}
+
+    <!-- Exibe mensagens de erro de campo específicos -->
+    {% for field in form %} {% if field.errors %}
+    <div class="form-message error">{{ field.errors.as_text }}</div>
+    {% endif %} {% endfor %}
+
+    <form action="{% url 'criar_usuario' %}" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="column">
+        <!-- Nome do Usuário -->
+        <div class="form-input-group">
+          <label for="{{ form.nome.id_for_label }}">Nome</label>
+          {{ form.nome }}
+        </div>
+
+        <!-- Foto do Usuário -->
+        <div class="form-input-group">
+          <label for="{{ form.foto.id_for_label }}">Foto</label>
+          <div class="form-image-input">
+              {{ form.foto }}
+          </div>
+        </div>
+
+        <!-- E-mail do Usuário -->
+        <div class="form-input-group">
+          <label for="{{ form.email.id_for_label }}">Email</label>
+          {{ form.email }}
+        </div>
+
+        <!-- Senha do Usuário -->
+        <div class="form-input-group">
+          <label for="{{ form.senha.id_for_label }}">Senha</label>
+          {{ form.senha }}
+        </div>
+
+        <!-- Tipo do Usuário -->
+        <div class="form-input-group">
+          <label for="{{ form.tipo.id_for_label }}">Tipo</label>
+          {{ form.tipo }}
+        </div>
+
+        <!-- Cargo do Usuário -->
+        <div class="form-input-group">
+          <label for="{{ form.cargo.id_for_label }}">Cargo</label>
+          {{ form.cargo }}
+        </div>
+
+        <!-- Botão de Submissão -->
+        <button type="submit" class="form-submit-button">Criar</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock content %}
+
+<!-- Remove o Footer -->
+{% block footer %}{% endblock footer %}

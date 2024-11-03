@@ -1,0 +1,53 @@
+{% extends "global/primary_base.html" %} 
+
+{% load static %} {% block title %}ProTecHub | Login{% endblock title %} 
+
+{% block content %}
+<body class="orange-linear-gradient-background">
+
+<div class="form-container">
+  <div class="form-wrapper">
+    <h1 class="form-title">Login de Usuário</h1>
+
+    <!-- Exibe as mensagens com as respectivas classes de estilos -->
+    {% if messages %} {% for message in messages %}
+    <div class="column form-message {{ message.tags }}">
+      <div>{{ message }}</div>
+    </div>
+    {% endfor %} {% endif %}
+
+    <!-- Exibe mensagens de erro não associados a campos específicos -->
+    {% if form.non_field_errors %}
+    <div class="form-message error">{{ form.non_field_errors }}</div>
+    {% endif %}
+
+    <!-- Exibe mensagens de erro de campo específicos -->
+    {% for field in form %} {% if field.errors %}
+    <div class="form-message error">{{ field.errors.as_text }}</div>
+    {% endif %} {% endfor %}
+
+    <form action="{% url 'login' %}" method="POST">
+      {% csrf_token %}
+      <div class="column">
+        <!-- E-mail do Usuário -->
+        <div class="form-input-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="Digite seu Email" required />
+        </div>
+
+        <!-- Senha do Usuário -->
+        <div class="form-input-group">
+          <label for="senha">Senha</label>
+          <input type="password" id="senha" name="senha" placeholder="Digite sua Senha" required />
+        </div>
+
+        <!-- Botão de Submissão -->
+        <button type="submit" class="form-submit-button">Entrar</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock content %}
+
+<!-- Remove o Footer -->
+{% block footer %}{% endblock footer %}

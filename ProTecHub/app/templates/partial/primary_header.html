@@ -1,0 +1,25 @@
+{% load static %} 
+
+{% block header %}
+<div class="row primary-header-container">
+  <a class="primary-header-text" href="{% url 'home' %}">
+    <img class="logo" src="{% static 'img/logo.png' %}" alt="Logo" />
+    <h1>ProTecHub | Gerenciamento de EPI's</h1>
+  </a>
+
+  <div class="primary-header-buttons">
+    <a class="primary-header-button" href="{% url 'login' %}">
+      <img src="{% static 'icons/icons8-login-48.png' %}" alt="Ícone" />
+      <h1>Login</h1>
+    </a>
+    <a class="primary-header-button" href="{% url 'cadastro' %}">
+      <img src="{% static 'icons/icons8-register-64.png' %}" alt="Ícone" />
+      <h1>Cadastro</h1>
+    </a>
+    <a class="primary-header-button" href="{% url 'interno' %}">
+      <img src="{% static 'icons/icons8-casa-50.png' %}" alt="Ícone" />
+      <h1>Acessar</h1>
+    </a>
+  </div>
+</div>
+{% endblock header %}

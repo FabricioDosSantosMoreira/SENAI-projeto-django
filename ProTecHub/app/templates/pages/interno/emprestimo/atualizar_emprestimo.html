@@ -1,0 +1,79 @@
+{% extends "global/secondary_base.html" %} 
+
+{% load static %} 
+
+{% block title %}ProTecHub | Editar Empréstimo{% endblock title %} 
+
+{% block content%}
+<body class="gray-linear-gradient-background">
+
+<div class="form-container">
+  <div class="form-wrapper">
+    <h1 class="form-title">Editar Empréstimo</h1>
+
+    <!-- Exibe as mensagens com as respectivas classes de estilos -->
+    {% if messages %} {% for message in messages %}
+    <div class="column form-message {{ message.tags }}">
+      <div>{{ message }}</div>
+    </div>
+    {% endfor %} {% endif %}
+
+    <!-- Exibe mensagens de erro não associados a campos específicos -->
+    {% if form.non_field_errors %}
+    <div class="form-message error">{{ form.non_field_errors }}</div>
+    {% endif %}
+
+    <!-- Exibe mensagens de erro de campo específicos -->
+    {% for field in form %} {% if field.errors %}
+    <div class="form-message error">{{ field.errors.as_text }}</div>
+    {% endif %} {% endfor %}
+
+    <form action="{% url 'atualizar_emprestimo' emprestimo.id %}" method="POST">
+      {% csrf_token %}
+      <div class="column">
+        <!-- Status do Empréstimo -->
+        <div class="form-input-group">
+          <label for="{{ form.status.id_for_label }}">Status</label>
+          {{ form.status }}
+        </div>
+
+        <!-- Quantidade de Equipamentos Empréstimo -->
+        <div class="form-input-group" id="quantidade-group">
+          <label for="{{ form.quantidade.id_for_label }}">Quantidade</label>
+          {{ form.quantidade }}
+        </div>
+
+        <!-- Usuário do Empréstimo -->
+        <div class="form-input-group" id="usuario-group">
+          <label for="{{ form.usuario.id_for_label }}">Usuário</label>
+          {{ form.usuario }}
+        </div>
+
+        <!-- Equipamento do Empréstimo -->
+        <div class="form-input-group" id="equipamento-group">
+          <label for="{{ form.equipamento.id_for_label }}">Equipamento</label>
+          {{ form.equipamento }}
+        </div>
+
+        <!-- Data do Empréstimo -->
+        <div class="form-input-group" id="data-emprestimo-group">
+          <label for="{{ form.data_emprestimo.id_for_label }}">Data de Empréstimo</label>
+          {{ form.data_emprestimo }}
+        </div>
+
+        <!-- Data de Devolução Prevista -->
+        <div class="form-input-group" id="data-devolucao-prevista-group">
+          <label for="{{ form.data_devolucao_prevista.id_for_label }}">Data de Devolução Prevista</label>
+          {{ form.data_devolucao_prevista }}
+        </div>
+
+        <!-- Botão de Submissão -->
+        <button type="submit" class="form-submit-button">Atualizar</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock content %}
+
+<!-- Remove o Footer -->
+{% block footer %}{% endblock footer %}

@@ -1,0 +1,114 @@
+{% extends "global/secondary_base.html" %} 
+
+{% load static %} 
+
+{% block title %}ProTecHub | Listagem de Empréstimos{% endblock title %} 
+
+{% block content %}
+<body class="gray-linear-gradient-background">
+
+<div id="confirmationPopup" class="popup">
+  <div class="popup-text">Tem certeza que deseja deletar?</div>
+  <button id="confirmYes" class="popup-yes-btn">Sim</button>
+  <button id="confirmNo" class="popup-no-btn">Não</button>
+</div>
+<div id="overlay" class="overlay"></div>
+
+<div class="table-container">
+  <div class="table-wrapper">
+    <div class="column">
+      <!-- Exibe as mensagens com as respectivas classes de estilos -->
+      {% if messages %} {% for message in messages %}
+      <div class="column form-message {{ message.tags }}">
+        <div>{{ message }}</div>
+      </div>
+      {% endfor %} {% endif %}
+
+      <!-- Exibe mensagens de erro não associados a campos específicos -->
+      {% if form.non_field_errors %}
+      <div class="form-message error">{{ form.non_field_errors }}</div>
+      {% endif %}
+
+      <!-- Exibe mensagens de erro de campo específicos -->
+      {% for field in form %} {% if field.errors %}
+      <div class="form-message error">{{ field.errors.as_text }}</div>
+      {% endif %} {% endfor %}
+
+      <div class="row table-info-container">
+        <div class="table-info">
+          <a class="table-add-button" href="{% url 'criar_emprestimo' %}">
+            <img src="{% static 'icons/icons8-add-32.png' %}" alt="Adicionar" />
+          </a>
+          <h1 class="table-text">Tabela | Empréstimos Cadastrados</h1>
+        </div>
+
+        <!-- Formulário de pesquisa -->
+        <form method="GET" class="table-form">
+          <select name="search">
+            <option value="">Pesquise por status</option>
+            {% for status in status_disponiveis %}
+              <option value="{{ status }}" {% if status == request.GET.search %}selected{% endif %}>
+                {{ status }}
+              </option>
+            {% endfor %}
+          </select>
+          <button type="submit" class="">Pesquisar</button>
+        </form>
+      </div>
+
+      <div class="table-divider"></div>
+
+      {% if emprestimos %}
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Status</th>
+            <th>Qtd.</th>
+            <th>Usuário</th>
+            <th>Equipamento</th>
+            <th>Data Empréstimo</th>
+            <th>Devolução Prevista</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for emprestimo in emprestimos %}
+          <tr class="table-divider">
+            <td colspan="8"></td>
+          </tr>
+          <tr>
+            <td>{{ emprestimo.id }}</td>
+            <td>{{ emprestimo.status }}</td>
+            <td>{{ emprestimo.quantidade }}</td>
+            <td>{{ emprestimo.usuario }}</td>
+            <td>{{ emprestimo.equipamento }}</td>
+            <td>{{ emprestimo.data_emprestimo }}</td>
+            <td>{{ emprestimo.data_devolucao_prevista }}</td>
+            <td>
+              <div class="row table-buttons">
+                <a class="table-update-button" href="{% url 'atualizar_emprestimo' emprestimo.id %}">
+                  <img src="{% static 'icons/icons8-update-32.png' %}" alt="Editar" />
+                </a>
+                <a class="table-save-button" href="{% url 'arquivar_emprestimo_no_historico' emprestimo.id %}">
+                  <img src="{% static 'icons/icons8-save-32.png' %}" alt="Arquivar" />
+                </a>
+                <a class="table-delete-button deleteButton" data-url="{% url 'deletar_emprestimo' emprestimo.id %}">
+                  <img src="{% static 'icons/icons8-trash-32.png' %}" alt="Remover" />
+                </a>
+              </div>
+            </td>
+          </tr>
+          {% endfor %}
+          <tr class="table-divider">
+            <td colspan="8"></td>
+          </tr>
+        </tbody>
+      </table>
+      {% else %}
+      <h1 class="table-empty-text">Não há empréstimos para serem listados!</h1>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock content %}

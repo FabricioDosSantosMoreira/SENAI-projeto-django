@@ -1,0 +1,94 @@
+{% extends "global/secondary_base.html" %} 
+
+{% load static %} 
+
+{% block title %}ProTecHub | Arquivar Empréstimo{% endblock title %} 
+
+{% block content%}
+<body class="gray-linear-gradient-background">
+  
+<div class="form-container">
+  <div class="form-wrapper">
+    <h1 class="form-title">Arquivar Empréstimo</h1>
+
+    <!-- Exibe as mensagens com as respectivas classes de estilos -->
+    {% if messages %} {% for message in messages %}
+    <div class="column form-message {{ message.tags }}">
+      <div>{{ message }}</div>
+    </div>
+    {% endfor %} {% endif %}
+
+    <!-- Exibe mensagens de erro não associados a campos específicos -->
+    {% if form.non_field_errors %}
+    <div class="form-message error">{{ form.non_field_errors }}</div>
+    {% endif %}
+
+    <!-- Exibe mensagens de erro de campo específicos -->
+    {% for field in form %} {% if field.errors %}
+    <div class="form-message error">{{ field.errors.as_text }}</div>
+    {% endif %} {% endfor %}
+
+    <form action="{% url 'arquivar_emprestimo_no_historico' emprestimo.id %}" method="POST">
+      {% csrf_token %}
+      <div class="column">
+        <!-- Status do Empréstimo -->
+        <div class="form-input-group">
+          <label for="{{ form.status.id_for_label }}">Status</label>
+          {{ form.status }}
+        </div>
+
+        <!-- Quantidade de Equipamentos do Empréstimo -->
+        <div class="form-input-group">
+          <label for="{{ form.quantidade.id_for_label }}">Quantidade</label>
+          <div class="form-input-group-exibition-only">
+            {{ form.quantidade.value }}
+          </div>
+        </div>
+
+        <!-- Usuário do Empréstimo -->
+        <div class="form-input-group">
+          <label for="{{ form.nome_usuario.id_for_label }}">Usuário</label>
+          <div class="form-input-group-exibition-only">
+            {{ form.nome_usuario.value }}
+          </div>
+        </div>
+
+        <!-- Equipamento do Empréstimo -->
+        <div class="form-input-group">
+          <label for="{{ form.nome_equipamento.id_for_label }}">Equipamento</label>
+          <div class="form-input-group-exibition-only">
+            {{ form.nome_equipamento.value }}
+          </div>
+        </div>
+
+        <!-- Data de Empréstimo -->
+        <div class="form-input-group">
+          <label for="{{ form.data_emprestimo.id_for_label }}">Data Empréstimo</label>
+          <div class="form-input-group-exibition-only">
+            {{ form.data_emprestimo.value }}
+          </div>
+        </div>
+
+        <!-- Data de Devolução Efetiva -->
+        <div class="form-input-group">
+          <label for="{{ form.data_devolucao_efetiva.id_for_label }}">Data de Devolução Efetiva</label>
+          {{ form.data_devolucao_efetiva }}
+        </div> 
+
+        <!-- Observação -->
+        <div class="form-input-group">
+          <label for="{{ form.observacao.id_for_label }}">Observação</label>
+          {{ form.observacao }}
+        </div> 
+
+        <!-- Botão de Submissão -->
+        <button type="submit" class="form-submit-button">Criar</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock content %}
+
+<!-- Remove o Footer -->
+{% block footer %}{% endblock footer %}
+

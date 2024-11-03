@@ -1,0 +1,28 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>{% block title %}{% endblock title %}</title>
+
+    <!-- Estilos CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
+    <!-- Script JS -->
+    <script src="{% static 'js/script.js' %}"></script>
+
+    <!-- Fonte do Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet" />
+  </head>
+
+  <header>{% block header %} {% include 'partial/secondary_header.html' %} {% endblock header %}</header>
+
+  <aside>{% block sidebar %} {% include 'partial/sidebar.html' %} {% endblock sidebar %}</aside>
+
+  <body>
+    {% block content %}{% endblock content %}
+  </body>
+</html>

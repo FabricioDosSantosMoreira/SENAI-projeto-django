@@ -34,9 +34,6 @@ def obter_historico(request: WSGIRequest) -> HttpResponse:
     status_query = request.GET.get('search-by-status')
     name_query = request.GET.get('search-by-name')
 
-    print(status_query)
-    print(name_query)
-
     # Construindo um dicionário de argumentos para o filtro
     filter_args = {}
     if status_query:

@@ -19,22 +19,22 @@ class Cargos(models.TextChoices):
 
 class CategoriaEPI(models.TextChoices):
 
-    PROTECAO_OCULAR_E_FACIAL = 'Proteção Ocular e Facial',   'Proteção Ocular e Facial'
-    PROTECAO_MAOS_E_BRACOS   = 'Proteção das Mãos e Braços', 'Proteção das Mãos e Braços'
-    PROTECAO_CONTRA_QUEDA    = 'Proteção Contra Queda',      'Proteção Contra Queda'
-    PROTECAO_RESPIRATORIA    = 'Proteção Respiratória',      'Proteção Respiratória'
-    PROTECAO_PES_E_PERNAS    = 'Proteção dos Pés e Pernas',  'Proteção dos Pés e Pernas'
-    PROTECAO_AUDITIVA        = 'Proteção Auditiva',          'Proteção Auditiva'
+    PROTECAO_OCULAR_E_FACIAL = 'PROTECAO_OCULAR_E_FACIAL', 'Proteção Ocular e Facial'
+    PROTECAO_MAOS_E_BRACOS   = 'PROTECAO_MAOS_E_BRACOS',   'Proteção das Mãos e Braços'
+    PROTECAO_CONTRA_QUEDA    = 'PROTECAO_CONTRA_QUEDA',    'Proteção Contra Queda'
+    PROTECAO_RESPIRATORIA    = 'PROTECAO_RESPIRATORIA',    'Proteção Respiratória'
+    PROTECAO_PES_E_PERNAS    = 'PROTECAO_PES_E_PERNAS',    'Proteção dos Pés e Pernas'
+    PROTECAO_AUDITIVA        = 'PROTECAO_AUDITIVA',        'Proteção Auditiva'
     
 
 class StatusEmprestimo(models.TextChoices):
 
-    EMPRESTADO = "Emprestado", "Emprestado"
-    EM_USO     = "Em Uso",     "Em Uso"
-    FORNECIDO  = "Fornecido",  "Fornecido"
-    DEVOLVIDO  = "Devolvido",  "Devolvido"
-    DANIFICADO = "Danificado", "Danificado"
-    PERDIDO    = "Perdido",    "Perdido"
+    EMPRESTADO = "EMPRESTADO", "Emprestado"
+    EM_USO     = "EM_USO",     "Em Uso"
+    FORNECIDO  = "FORNECIDO",  "Fornecido"
+    DEVOLVIDO  = "DEVOLVIDO",  "Devolvido"
+    DANIFICADO = "DANIFICADO", "Danificado"
+    PERDIDO    = "PERDIDO",    "Perdido"
 
     
     @classmethod

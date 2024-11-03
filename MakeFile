@@ -1,0 +1,19 @@
+.PHONY: install first-run run
+
+install:
+	@echo "[INFO] - - -> Instalando o projeto..."     \
+	&& cd ./ProTecHub/                                \
+	&& pip install poetry                             \
+	&& poetry install   
+	                              
+.first-run:
+	@echo "[INFO] - - -> Iniciando o projeto..."      \
+	&& cd ./ProTecHub/                                \
+	&& poetry run python manage.py runserver          \
+	&& poetry run python manage.py makemigrations app \
+	&& poetry run python manage.py migrate            
+
+run:
+	@echo "[INFO] - - -> Iniciando o projeto..."      \
+	&& cd ./ProTecHub/                                \
+	&& poetry run python manage.py runserver 

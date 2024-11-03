@@ -10,22 +10,56 @@ Funcionalidades Principais:
 ![Página Inicial](./docs/home.png)
 
 
-## Executando o Projeto
+## 🌎 Tecnologias Utilizadas
 
-```shell
-cd '.\Imersão 5\'
-
--> Criando e executando as migrações:
-python manage.py makemigrations app
-python manage.py migrate
-
--> Executando
-python manage.py runserver
+- Python
+- Django
+- Django-environ
+- MySQL | SQLite
+- HTML5 | CSS | JS
 
 
--> Ou
-docker-compose up --build
+## ⚙ Instalação
+
+### 🔹 Clone o repositório
+```bash
+git clone https://github.com/FabricioDosSantosMoreira/SENAI-projeto-django.git
 ```
+
+### 🔹 Instale as dependências
+
+```bash
+# ⭕ OBS - Necessário ter o MAKE:
+make install
+
+# Ou, utilize:
+pip install poetry
+cd ./ProTecHub/
+poetry install
+```
+
+
+## 🟢 Execução
+```bash
+# ⭕ OBS - Necessário ter o MAKE:
+
+make first-run
+
+# Ou, utilize:
+cd ./ProTecHub/
+poetry run python manage.py makemigrations app
+poetry run python manage.py migrate
+poetry run python manage.py runserver
+
+
+# 🔄 Para executar o projeto novamente:
+make run
+
+# Ou, utilize:
+cd ./ProTecHub/
+poetry run python manage.py runserver
+```
+
 
 ## Requisitos Funcionais e Não Funcionais
 
@@ -47,6 +81,16 @@ Requisitos Não Funcionais:
 
 ## Participantes
 
-- [Fabrício dos Santos Moreira] (https://github.com/FabricioDosSantosMoreira)
+- [Fabrício dos Santos Moreira]  (https://github.com/FabricioDosSantosMoreira)
+- [Maria Eduarda Figueiredo]     (https://github.com/mariaeduardafigueiredo)
 - [Guilherme Stadnicki da Silva] (https://github.com/guilhermestd)
-- [Maria Eduarda Figueiredo] (https://github.com/mariaeduardafigueiredo)
+
+
+## 💡 Contribuição
+
+Sinta se livre para contribuir com qualquer sugestão, correção ou dicas. Basta abrir um pull request!
+
+
+## 📃 Licença
+
+O projeto é licensiado sob a licença do MIT. Veja a [Licença](LICENSE/) para mais informações.

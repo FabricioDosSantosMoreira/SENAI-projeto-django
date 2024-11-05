@@ -31,35 +31,32 @@
     <form action="{% url 'atualizar_usuario' usuario.id %}" method="POST" enctype="multipart/form-data">
       {% csrf_token %}
       <div class="column">
+        
         <!-- Nome do Usuário -->
         <div class="form-input-group">
           <label for="{{ form.nome.id_for_label }}">Nome</label>
           {{ form.nome }}
         </div>
 
-      <!-- Foto do Usuário -->
-      <div class="form-input-group">
-        <label for="{{ form.foto.id_for_label }}">Foto</label>
-        <div class="form-image-container">
-          
+        <!-- Foto do Usuário -->
+        <div class="form-input-group">
+          <label for="{{ form.foto.id_for_label }}">Foto</label>
+          <div class="form-image-container">
+            
+            <!-- Exibe a pré-visualização da imagem atual, se disponível -->
+            <div class="image-preview">
+              {% if form.foto.value %}
+                <img src="{{ form.foto.value.url }}" alt="Foto atual do usuário" id="current-image">
+              {% endif %}
+            </div>
 
-          <!-- Exibe a pré-visualização da imagem atual, se disponível -->
-          <div class="image-preview">
-            {% if form.foto.value %}
-              <img src="{{ form.foto.value.url }}" alt="Foto atual do usuário" id="current-image">
-            {% endif %}
+            <!-- Campo de upload escondido -->
+            <input type="file" name="{{ form.foto.html_name }}" id="upload-photo" class="form-hidden-upload" accept="image/*" onchange="UploadAndChangeFormPhoto(event)">
+
+            <!-- Botão de modificar a foto -->
+            <button type="button" class="form-modify-button" onclick="document.getElementById('upload-photo').click()">Modificar Foto</button>
           </div>
-
-          <!-- Campo de upload escondido -->
-          <input type="file" name="{{ form.foto.html_name }}" id="upload-photo" class="form-hidden-upload" accept="image/*" onchange="UploadAndChangeUserPhoto(event)">
-
-          <!-- Botão de modificar a foto -->
-          <button type="button" class="form-modify-button" onclick="document.getElementById('upload-photo').click()">Modificar Foto</button>
         </div>
-      </div>
-
-
-
 
         <!-- E-mail do Usuário -->
         <div class="form-input-group">

@@ -8,7 +8,7 @@
 
     <title>{% block title %}{% endblock title %}</title>
 
-    <!-- Estilos CSS -->
+    <!-- Estilo CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
 
     <!-- Script JS -->
@@ -18,10 +18,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet" />
   </head>
 
+  <!-- Header Secundário -->
   <header>{% block header %} {% include 'partial/secondary_header.html' %} {% endblock header %}</header>
 
+  <!-- Sidebar -->
   <aside>{% block sidebar %} {% include 'partial/sidebar.html' %} {% endblock sidebar %}</aside>
 
+  <!-- Conteúdo -->
   <body>
     {% block content %}{% endblock content %}
   </body>

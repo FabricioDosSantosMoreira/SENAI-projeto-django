@@ -9,7 +9,16 @@ class HistoricoForm(forms.ModelForm):
 
     class Meta:
         model = Historico
-        fields = ['status', 'data_emprestimo', 'data_devolucao_efetiva', 'quantidade', 'nome_usuario', 'nome_equipamento', 'observacao']
+        fields = [
+            'quantidade', 
+            'status', 
+            'observacao',
+            'data_emprestimo', 
+            'data_devolucao_efetiva', 
+            'nome_equipamento', 
+            'nome_usuario', 
+        ]
+        
         widgets = {
             'quantidade': forms.NumberInput(attrs={
                 'placeholder': 'Quantidade',
@@ -26,10 +35,11 @@ class HistoricoForm(forms.ModelForm):
             self.initial['data_devolucao_efetiva'] = obter_data_atual()
 
         self.fields['status'].choices = StatusEmprestimo.obter_status_para_arquivar()
+        
         self.fields['quantidade'].required = False
         self.fields['nome_usuario'].required = False
-        self.fields['nome_equipamento'].required = False
         self.fields['data_emprestimo'].required = False
+        self.fields['nome_equipamento'].required = False
 
 
     def save(self, commit=True):

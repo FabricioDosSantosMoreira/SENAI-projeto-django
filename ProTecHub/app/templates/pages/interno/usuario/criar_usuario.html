@@ -31,6 +31,7 @@
     <form action="{% url 'criar_usuario' %}" method="POST" enctype="multipart/form-data">
       {% csrf_token %}
       <div class="column">
+        
         <!-- Nome do Usuário -->
         <div class="form-input-group">
           <label for="{{ form.nome.id_for_label }}">Nome</label>

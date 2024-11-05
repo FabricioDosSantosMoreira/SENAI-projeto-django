@@ -55,7 +55,11 @@ def obter_historico(request: WSGIRequest) -> HttpResponse:
     # Formata a 'validade' para exibição
     for item in itens_historico:
         item.data_emprestimo = obter_data_resumida(item.data_emprestimo)
-        item.data_devolucao_efetiva = obter_data_resumida(item.data_devolucao_efetiva)
+
+        if item.data_devolucao_efetiva:
+            item.data_devolucao_efetiva = obter_data_resumida(item.data_devolucao_efetiva)
+        else:
+            item.data_devolucao_efetiva = 'NULO'
 
     context = {
         'user_groups': user_groups,

@@ -19,7 +19,15 @@ class UsuarioForm(forms.ModelForm):
 
     class Meta:
         model = Usuario
-        fields = ['nome', 'foto', 'email', 'tipo', 'cargo', 'senha']
+        fields = [
+            'nome', 
+            'email', 
+            'senha',
+            'cargo',
+            'tipo', 
+            'foto', 
+        ]
+        
         widgets = {
             'tipo': forms.Select(
                 choices=TipoUsuario, 
@@ -38,8 +46,6 @@ class UsuarioForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        #self.fields['foto'].widget.attrs.update({'class': 'custom-upload'})
-        
 
 
     def save(self, commit=True):

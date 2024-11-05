@@ -7,6 +7,8 @@
 
 <div class="form-container">
   <div class="form-wrapper">
+
+    <!-- Título do Formulário -->
     <h1 class="form-title">Login de Usuário</h1>
 
     <!-- Exibe as mensagens com as respectivas classes de estilos -->
@@ -26,6 +28,7 @@
     <div class="form-message error">{{ field.errors.as_text }}</div>
     {% endif %} {% endfor %}
 
+    <!-- Formulário -->
     <form action="{% url 'login' %}" method="POST">
       {% csrf_token %}
       <div class="column">

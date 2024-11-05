@@ -31,6 +31,7 @@
     <form action="{% url 'atualizar_equipamento' equipamento.id %}" method="POST">
       {% csrf_token %}
       <div class="column">
+        
         <!-- Nome do Equipamento -->
         <div class="form-input-group">
           <label for="{{ form.nome.id_for_label }}">Nome</label>

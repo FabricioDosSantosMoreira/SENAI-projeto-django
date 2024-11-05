@@ -8,7 +8,15 @@ class EmprestimoForm(forms.ModelForm):
 
     class Meta:
         model = Emprestimo
-        fields = ['status', 'data_emprestimo', 'data_devolucao_prevista', 'quantidade', 'usuario', 'equipamento']
+        fields = [
+            'quantidade', 
+            'status', 
+            'data_emprestimo', 
+            'data_devolucao_prevista', 
+            'usuario', 
+            'equipamento',
+        ]
+
         widgets = {
             'quantidade': forms.NumberInput(attrs={
                 'placeholder': 'Quantidade',
@@ -21,7 +29,7 @@ class EmprestimoForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         
         self.fields['status'].choices = StatusEmprestimo.obter_status_para_cadastro()
-       
+
 
     def save(self, commit=True):
         return super().save(commit=commit)

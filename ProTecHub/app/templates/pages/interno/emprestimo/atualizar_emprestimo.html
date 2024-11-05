@@ -31,6 +31,7 @@
     <form action="{% url 'atualizar_emprestimo' emprestimo.id %}" method="POST">
       {% csrf_token %}
       <div class="column">
+        
         <!-- Status do Empréstimo -->
         <div class="form-input-group">
           <label for="{{ form.status.id_for_label }}">Status</label>

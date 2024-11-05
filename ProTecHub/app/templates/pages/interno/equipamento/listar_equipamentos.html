@@ -17,6 +17,7 @@
 <div class="table-container">
   <div class="table-wrapper">
     <div class="column">
+      
       <!-- Exibe as mensagens com as respectivas classes de estilos -->
       {% if messages %} {% for message in messages %}
       <div class="column form-message {{ message.tags }}">
@@ -37,14 +38,14 @@
       <div class="row table-info-container">
         <div class="table-info">
           <a class="table-add-button" href="{% url 'criar_equipamento' %}">
-            <img src="{% static 'icons/icons8-add-32.png' %}" alt="Adicionar" />
+            <img src="{% static 'img/icons/icons8-add.png' %}" alt="Adicionar" />
           </a>
           <h1 class="table-text">Tabela | Equipamentos Cadastrados</h1>
         </div>
 
         <!-- Formulário de pesquisa -->
         <form method="GET" class="table-form">
-          <input type="text" name="search" class="form-control" placeholder="Pesquisar por nome" value="{{ request.GET.search }}" />
+          <input type="text" name="search" class="form-control" placeholder="Pesquisar pelo nome" value="{{ request.GET.search }}" />
           <button type="submit" class="">Pesquisar</button>
         </form>
       </div>
@@ -79,10 +80,10 @@
             <td>
               <div class="row table-buttons">
                 <a class="table-update-button" href="{% url 'atualizar_equipamento' equipamento.id %}">
-                  <img src="{% static 'icons/icons8-update-32.png' %}" alt="Editar" />
+                  <img src="{% static 'img/icons/icons8-update.png' %}" alt="Editar" />
                 </a>
-                <a class="table-delete-button deleteButton" data-url="{% url 'deletar_equipamento' equipamento.id %}">
-                  <img src="{% static 'icons/icons8-trash-32.png' %}" alt="Remover" />
+                <a class="table-delete-button deleteButton" data-url="{% url 'deletar_equipamento' equipamento.id %}" onclick="toggleDeletionPopUp(this)">
+                  <img src="{% static 'img/icons/icons8-trash.png' %}" alt="Remover" />
                 </a>
               </div>
             </td>

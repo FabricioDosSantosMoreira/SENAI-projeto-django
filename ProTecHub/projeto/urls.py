@@ -8,6 +8,6 @@ urlpatterns = [
     path('', include('app.urls'))
 ]
 
-# Permite servir arquivos de 'midia/' em ambiente de desenvolvimento
+# Permite servir arquivos de 'midia/' no ambiente de desenvolvimento
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

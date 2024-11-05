@@ -8,7 +8,13 @@ class EquipamentoForm(forms.ModelForm):
 
     class Meta:
         model = Equipamento
-        fields = ['nome', 'quantidade_total', 'validade', 'categoria']
+        fields = [
+            'nome', 
+            'categoria',
+            'quantidade_total', 
+            'validade',     
+        ]
+
         widgets = {
             'quantidade_total': forms.NumberInput(attrs={
                 'placeholder': 'Quantidade',

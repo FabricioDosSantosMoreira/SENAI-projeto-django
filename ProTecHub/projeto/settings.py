@@ -16,6 +16,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -25,7 +26,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
     'app'
 ]
 
@@ -63,12 +63,24 @@ WSGI_APPLICATION = 'projeto.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+# Configuração do banco de dados MySQL
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'gerenciamento',
+        'USER': 'root',
+        'PASSWORD': '123456',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
+
+# Alternar para o banco de dados SQLite, se necessário
+if os.getenv('USE_SQLITE', 'False').lower().strip(' ') == 'true':
+    DATABASES['default'] = {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
 
 
 # Password validation
@@ -107,6 +119,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
@@ -115,12 +128,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'app.Usuario'
 
 
-# do login_required
+# URL de login e URL de redirecionamento
+
 LOGIN_URL = '/login/'
 
 LOGIN_REDIRECT_URL = '/interno/'
 
 
-# da foto do usuario
+# URL de midia e Path de midia
+
 MEDIA_URL = '/midia/'
+
 MEDIA_ROOT = os.path.join(BASE_DIR, 'midia')

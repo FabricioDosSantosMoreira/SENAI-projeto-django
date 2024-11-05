@@ -9,6 +9,8 @@
 
 <div class="form-container">
   <div class="form-wrapper">
+
+    <!-- Título do Formulário -->
     <h1 class="form-title">Cadastro de Usuário</h1>
 
     <!-- Exibe as mensagens com as respectivas classes de estilos -->
@@ -28,6 +30,7 @@
     <div class="form-message error">{{ field.errors.as_text }}</div>
     {% endif %} {% endfor %}
 
+    <!-- Formulário -->
     <form action="{% url 'cadastro' %}" method="POST" enctype="multipart/form-data">
       {% csrf_token %}
       <div class="column">

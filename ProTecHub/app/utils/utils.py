@@ -1,26 +1,35 @@
-from datetime import datetime
-from typing import Optional
+from datetime import datetime, date
 from dateutil.relativedelta import relativedelta
 import pytz
 from django.conf import settings
 
 
 def obter_data_atual() -> datetime:
-    return datetime.now(pytz.timezone(settings.TIME_ZONE))
+    obj = datetime.now(pytz.timezone(settings.TIME_ZONE))
+    return obj
 
 
-def obter_data_do_proximo_ano() -> datetime:
-    return obter_data_atual() + relativedelta(years=+1)
+def obter_data_do_proximo_ano() -> date:
+    obj = obter_data_atual() + relativedelta(years=+1)
+    return date(obj.year, obj.month, obj.day)
 
 
 def obter_data_do_proximo_mes() -> datetime:
-    return obter_data_atual() + relativedelta(months=+1)
+    obj = obter_data_atual() + relativedelta(months=+1)
+    return obj
 
 
 def obter_data_resumida(
-        objeto: datetime, 
-        timezone: Optional[str] = settings.TIME_ZONE, 
-        formato:  Optional[str] = "%d/%m/%Y, %H:%M:%S", 
+        objeto: date | datetime, 
     ) -> datetime:
 
-    return objeto.astimezone(pytz.timezone(timezone)).strftime(formato)
+    timezone = settings.TIME_ZONE
+
+    if type(objeto) == date:
+        formato = "%d/%m/%Y"
+        return objeto.strftime(formato)
+    elif type(objeto) == datetime:
+        formato = "%d/%m/%Y, %H:%M:%S"
+        return objeto.astimezone(pytz.timezone(timezone)).strftime(formato)
+    else: 
+        return 'NULO'

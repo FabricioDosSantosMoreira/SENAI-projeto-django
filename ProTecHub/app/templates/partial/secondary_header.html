@@ -2,7 +2,7 @@
 
 {% block header %}
 <div class="row secondary-header-container">
-
+  
   <!-- Foto e Nome -->
   {% if user.is_authenticated %}
   <a class="secondary-header-text">
@@ -12,7 +12,7 @@
       {% else %}
       <img class="user-profile-picture" src="{{ MEDIA_URL }}/usuarios/default_user.png" alt="Foto" />
       {% endif %}
-      <img class="user-action-icon" src="{% static 'icons/icons8-ordem-descendente-48.png' %}" alt="Ações" />
+      <img class="user-action-icon" src="{% static 'img/icons/icons8-bottom-arrow.png' %}" alt="Ações" />
     </div>
     <div class="secondary-header-divider"></div>
     <h1>{{ user.nome }}</h1>
@@ -45,6 +45,9 @@
     <a class="secondary-header-button" href="{% url 'obter_emprestimos' %}">
       <h1>Empréstimos</h1>
     </a>
+    <a class="secondary-header-button" href="{% url 'obter_historico' %}">
+      <h1>Histórico</h1>
+    </a>
     <!-- Verifica se o usuário pertence ao grupo Supervisor -->
     {% elif 'Supervisor' in user_groups %}
     <a class="secondary-header-button" href="{% url 'obter_equipamentos' %}">
@@ -52,6 +55,9 @@
     </a>
     <a class="secondary-header-button" href="{% url 'obter_emprestimos' %}">
       <h1>Empréstimos</h1>
+    </a>
+    <a class="secondary-header-button" href="{% url 'obter_historico' %}">
+      <h1>Histórico</h1>
     </a>
     <!-- Verifica se o usuário pertence ao grupo Colaborador -->
     {% elif 'Colaborador' in user_groups %}
@@ -61,10 +67,10 @@
     {% endif %}
 
     <a class="secondary-header-button secondary-header-button-width-fit" href="{% url 'interno' %}">
-      <img src="{% static 'icons/icons8-retornar-50.png' %}" alt="Voltar" />
+      <img src="{% static 'img/icons/icons8-return.png' %}" alt="Voltar" />
     </a>
     <a class="secondary-header-button secondary-header-button-width-fit" href="{% url 'home' %}">
-      <img src="{% static 'icons/icons8-casa-50.png' %}" alt="Home" />
+      <img src="{% static 'img/icons/icons8-home.png' %}" alt="Home" />
     </a>
   </div>
   {% endif %}

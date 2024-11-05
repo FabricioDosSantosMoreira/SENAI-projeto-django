@@ -1,4 +1,4 @@
-// Função para ativar a Sidebar
+// Função para ativar a sidebar
 function toggleSidebar() {
   const sidebar = document.getElementById('sidebar')
   sidebar.classList.toggle('open');
@@ -12,14 +12,14 @@ function toggleUserActions() {
 }
 
 
-// Função para modificar a foto do usuário e já exibir 
-function UploadAndChangeUserPhoto() {
+// Função para modificar a foto do usuário e já exibir no formulário
+function UploadAndChangeFormPhoto() {
   const [file] = event.target.files;
-    
+
   if (file) {
     const imagePreview = document.getElementById('current-image');
     imagePreview.src = URL.createObjectURL(file); // Atualiza a pré-visualização
-    imagePreview.style.display = 'block'; // Exibe a imagem caso estivesse oculta
+    imagePreview.style.display = 'block';
   }
 }
 
@@ -39,22 +39,24 @@ function toggleSidebarInteractiveItem(button, itemId) {
     }
   });
 
-  // Aqui a altura é corretamente registrada após a animação
+  // Obtêm a altura do item interativo
   const itemHeight = interactiveItem.clientHeight;
 
-  // Ajuste o marginBottom do botão ativo
+  // Muda o símbolo do botão e posiciona o item interativo corretamente
   document.querySelectorAll('.sidebar-interactive-button').forEach(btn => {
     if (btn === button && interactiveItem.classList.contains('open')) {
+      // Muda o símbolo do botão (abre)
       btn.style.marginBottom = `${itemHeight}px`;
       btn.innerText = btn.innerText.replace("►", "▼");
 
-      // Posiciona o item logo abaixo do botão
+      // Posiciona o item interativo logo abaixo do botão
       const buttonRect = button.getBoundingClientRect();
       interactiveItem.style.position = 'absolute';
       interactiveItem.style.top = `${buttonRect.bottom}px`;
       interactiveItem.style.left = `${buttonRect.left}px`;
 
     } else {
+      // Muda o símbolo do botão (fecha)
       btn.style.marginBottom = '0px';
       btn.innerText = btn.innerText.replace("▼", "►"); 
     }
@@ -62,35 +64,28 @@ function toggleSidebarInteractiveItem(button, itemId) {
 }
 
 
-// Gerencia o pop-up de deleção
-document.addEventListener('DOMContentLoaded', () => {
-  const deleteButtons = document.querySelectorAll('.deleteButton');
+// Função para gerenciar o pop-up de confirmação
+function toggleDeletionPopUp(button) {
   const confirmationPopup = document.getElementById('confirmationPopup');
   const overlay = document.getElementById('overlay');
+  const deleteUrl = button.getAttribute('data-url');
+  
+  // Exibe o pop-up
+  confirmationPopup.classList.add('show');
+  overlay.classList.add('show');
+
+  // Define a ação de confirmação
   const confirmYes = document.getElementById('confirmYes');
+  confirmYes.onclick = () => {
+    window.location.href = deleteUrl;
+    confirmationPopup.classList.remove('show');
+    overlay.classList.remove('show');
+  };
+
+  // Cancela o pop-up
   const confirmNo = document.getElementById('confirmNo');
-  let deleteUrl = ''; // URL de exclusão temporária
-
-  // Abrir o pop-up de confirmação
-  deleteButtons.forEach(button => {
-      button.addEventListener('click', (event) => {
-          event.preventDefault();
-          deleteUrl = button.getAttribute('data-url');
-          confirmationPopup.classList.add('show');
-          overlay.classList.add('show');
-      });
-  });
-
-  // Confirmar exclusão
-  confirmYes.addEventListener('click', () => {
-      window.location.href = deleteUrl;
-      confirmationPopup.classList.remove('show');
-      overlay.classList.remove('show');
-  });
-
-  // Cancelar exclusão
-  confirmNo.addEventListener('click', () => {
-      confirmationPopup.classList.remove('show');
-      overlay.classList.remove('show');
-  });
-});
+  confirmNo.onclick = () => {
+    confirmationPopup.classList.remove('show');
+    overlay.classList.remove('show');
+  };
+}

@@ -11,11 +11,11 @@ from app.utils.enums import TipoUsuario, Cargos
 class Usuario(AbstractUser):
 
     # Colunas da tabela 'Usuario'
-    email = models.EmailField(unique=True)
     nome = models.CharField(max_length=255)
-    foto = models.ImageField(upload_to='usuarios/', null=True, blank=True)
-    tipo = models.CharField(max_length=24, choices=TipoUsuario)
+    email = models.EmailField(unique=True)
     cargo = models.CharField(max_length=24, choices=Cargos)
+    tipo = models.CharField(max_length=24, choices=TipoUsuario)
+    foto = models.ImageField(upload_to='usuarios/', null=True, blank=True)
     data_admissao = models.DateTimeField(auto_now_add=True)
 
 
@@ -30,7 +30,7 @@ class Usuario(AbstractUser):
         if self.tipo == TipoUsuario.ADMINISTRADOR:
             admin_group = Group.objects.get(name='Admin')
             self.groups.add(admin_group)
-
+            
         elif self.tipo == TipoUsuario.SUPERVISOR:
             supervisor_group = Group.objects.get(name='Supervisor')
             self.groups.add(supervisor_group)

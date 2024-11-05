@@ -18,6 +18,7 @@ from app.utils.enums import TipoUsuario
 from django.contrib.auth.decorators import login_required
 
 from app.utils import obter_data_resumida
+from app.utils.enums import TipoUsuario, Cargos
 
 @login_required()
 def obter_usuarios(request: WSGIRequest) -> HttpResponse: 
@@ -42,9 +43,11 @@ def obter_usuarios(request: WSGIRequest) -> HttpResponse:
     user_groups = request.user.groups.values_list('name', flat=True)
     foto = Usuario.objects.filter(id=request.user.pk).values_list('foto', flat=True).first()
 
-    # Formata a 'data_admissao' para exibição
+    # Formata a 'data_admissao', 'tipo', 'cargo' para exibição
     for usuario in usuarios:
         usuario.data_admissao = obter_data_resumida(usuario.data_admissao)
+        usuario.tipo = TipoUsuario(usuario.tipo).label
+        usuario.cargo = Cargos(usuario.cargo).label
 
     context = {
         'user_groups': user_groups,

@@ -13,8 +13,8 @@ class Usuario(AbstractUser):
     # Colunas da tabela 'Usuario'
     nome = models.CharField(max_length=255)
     email = models.EmailField(unique=True)
-    cargo = models.CharField(max_length=24, choices=Cargos)
-    tipo = models.CharField(max_length=24, choices=TipoUsuario)
+    cargo = models.CharField(max_length=24, choices=Cargos.choices)
+    tipo = models.CharField(max_length=24, choices=TipoUsuario.choices)
     foto = models.ImageField(upload_to='usuarios/', null=True, blank=True)
     data_admissao = models.DateTimeField(auto_now_add=True)
 

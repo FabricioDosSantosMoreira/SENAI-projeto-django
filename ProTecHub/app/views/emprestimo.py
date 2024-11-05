@@ -14,6 +14,7 @@ from app.forms import EmprestimoForm
 from django.contrib.auth.decorators import login_required
 from .base import home, logar
 from app.utils import obter_data_resumida
+from app.utils.enums import StatusEmprestimo
 
 from app.utils.enums import StatusEmprestimo
 
@@ -33,7 +34,7 @@ def obter_emprestimos(request: WSGIRequest) -> HttpResponse:
 
     query = request.GET.get('search')
     if query:
-        emprestimos: list[Emprestimo] = Emprestimo.objects.filter(status__icontains=query)
+        emprestimos: list[Emprestimo] = Emprestimo.objects.filter(status=query.replace(' ', '_'))
     else:
         emprestimos: list[Emprestimo] = Emprestimo.objects.all()
 
@@ -45,10 +46,11 @@ def obter_emprestimos(request: WSGIRequest) -> HttpResponse:
         StatusEmprestimo.FORNECIDO.label
     ]
 
-    # Formata a 'data_emprestimo' e 'data_devolucao_prevista' para exibição
+    # Formata a 'data_emprestimo' e 'data_devolucao_prevista' e 'status' para exibição
     for emprestimo in emprestimos:
         emprestimo.data_emprestimo = obter_data_resumida(emprestimo.data_emprestimo)
         emprestimo.data_devolucao_prevista = obter_data_resumida(emprestimo.data_devolucao_prevista)
+        emprestimo.status = StatusEmprestimo(emprestimo.status).label
 
     context = {
         'user_groups': user_groups,

@@ -12,9 +12,9 @@ from django.core.handlers.wsgi import WSGIRequest
 from app.models import Usuario, Equipamento
 from app.forms import EquipamentoForm
 from django.contrib.auth.decorators import login_required
-import pytz
 from .base import home, logar
 from app.utils import obter_data_resumida
+from app.utils.enums import CategoriaEPI
 
 
 @login_required()
@@ -40,9 +40,10 @@ def obter_equipamentos(request: WSGIRequest) -> HttpResponse:
     user_groups = request.user.groups.values_list('name', flat=True)
     foto = Usuario.objects.filter(id=request.user.pk).values_list('foto', flat=True).first()
 
-    # Formata a 'validade' para exibição
+    # Formata a 'validade' e 'categoria' para exibição
     for equipamento in equipamentos:
         equipamento.validade = obter_data_resumida(equipamento.validade)
+        equipamento.categoria = CategoriaEPI(equipamento.categoria).label
 
     context = {
         'user_groups': user_groups,

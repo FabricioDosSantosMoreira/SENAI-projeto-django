@@ -37,7 +37,7 @@ def obter_historico(request: WSGIRequest) -> HttpResponse:
     # Construindo um dicionário de argumentos para o filtro
     filter_args = {}
     if status_query:
-        filter_args['status'] = status_query
+        filter_args['status'] = status_query.replace(' ', '_')
     if name_query:
         filter_args['nome_usuario__contains'] = name_query
 
@@ -52,9 +52,10 @@ def obter_historico(request: WSGIRequest) -> HttpResponse:
     user_groups = request.user.groups.values_list('name', flat=True)
     foto = Usuario.objects.filter(id=request.user.pk).values_list('foto', flat=True).first()
 
-    # Formata a 'validade' para exibição
+    # Formata a 'data_emprestimo', 'data_devolucao_efetiva' e 'status' para exibição
     for item in itens_historico:
         item.data_emprestimo = obter_data_resumida(item.data_emprestimo)
+        item.status = StatusEmprestimo(item.status).label
 
         if item.data_devolucao_efetiva:
             item.data_devolucao_efetiva = obter_data_resumida(item.data_devolucao_efetiva)

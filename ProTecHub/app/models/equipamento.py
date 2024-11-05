@@ -9,7 +9,7 @@ class Equipamento(models.Model):
 
     # Colunas da tabela 'Equipamento'
     nome = models.CharField(max_length=255) 
-    categoria = models.CharField(max_length=100, choices=CategoriaEPI)
+    categoria = models.CharField(max_length=100, choices=CategoriaEPI.choices)
     quantidade_total = models.PositiveIntegerField(default=1)
     validade = models.DateField(default=obter_data_do_proximo_ano)
     

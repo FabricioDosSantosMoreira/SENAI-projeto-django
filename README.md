@@ -2,16 +2,21 @@
  
 O presente projeto consiste no desenvolvimento de um sistema de gerenciamento de Equipamentos de Proteção Individual (EPIs) para uma empresa de construção civil, com o objetivo de otimizar o controle e a utilização dos EPIs pelos colaboradores. O sistema tem como objetivo principal garantir que os colaboradores estejam utilizando os EPIs adequados durante a execução de suas tarefas. Para isso, o sistema permite que os colaboradores realizem a solicitação de equipamentos, com controle sobre a quantidade disponível em estoque e as datas de empréstimo e devolução.
 
-![Página Inicial](./docs/home.png)
-
 
 ## 🌎 Tecnologias Utilizadas
 
 - Python
-- Django
-- Django-environ
-- MySQL | SQLite
-- HTML5 | CSS | JS
+- Django | Pytz
+- MySQL  | SQLite3
+- HTML5  | CSS | JS
+
+
+## 🖼 Galeria
+|                                                                   |                                                                     |
+|-------------------------------------------------------------------|---------------------------------------------------------------------|
+| ![Home](./docs/img/01%20-%20Home.png)                             | ![Interno](./docs/img/02%20-%20Interno.png)                         |
+| ![Usuários](./docs/img/03%20-%20Tabela%20de%20Usuários.png)       | ![Equipamentos](./docs/img/04%20-%20Tabela%20de%20Equipamentos.png) |
+| ![Empréstimos](./docs/img/05%20-%20Tabela%20de%20Empréstimos.png) | ![Histórico](./docs/img/06%20-%20Tabela%20de%20Histórico.png)       |
 
 
 ## ⚙ Instalação
@@ -25,7 +30,7 @@ git clone https://github.com/FabricioDosSantosMoreira/SENAI-projeto-django.git
 
 ```bash
 # ⭕ OBS - Necessário ter o MAKE:
-make install
+make install  
 
 # Ou, utilize:
 pip install poetry
@@ -34,23 +39,33 @@ poetry install
 ```
 
 
+## 🔹 Configure o MySQL (Opcional)
+```bash
+# ⭕ OBS - Necessário ter o MySQL:
+Crie um banco de dados localmente usando o `MySQL` e contendo:
+- NAME = `gerenciamento`
+- HOST = `localhost`
+- PORT = `3306`
+- USER = `root`
+- PASS = `123456`
+
+# Ou, se preferir você pode mudar as configurações em: `./ProTecHub/projeto/settings.py`.
+```
+
+
 ## 🟢 Execução
 ```bash
 # ⭕ OBS - Necessário ter o MAKE:
-make first-run
+
+make first-sqlite-run  # Executa usando o SQLite3 built-in do Django
+
+make first-mysql-run  # Executa utilizando o MySQL configurado
+
 
 # Ou, utilize:
+set USE_SQLITE=True  # Pode ser False ou True, caso seja True usará o SQLite3. Caso Falso usará o MySQL.
 cd ./ProTecHub/
-poetry run python manage.py makemigrations app
 poetry run python manage.py migrate
-poetry run python manage.py runserver
-
-
-# 🔄 Para executar o projeto novamente:
-make run
-
-# Ou, utilize:
-cd ./ProTecHub/
 poetry run python manage.py runserver
 ```
 

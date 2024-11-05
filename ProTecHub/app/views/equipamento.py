@@ -129,9 +129,16 @@ def atualizar_equipamento(request: WSGIRequest, id: int) -> HttpResponse:
     equipamento: Equipamento = get_object_or_404(Equipamento, id=id) 
 
     if request.method == 'POST':
-        form = EquipamentoForm(request.POST, instance=equipamento)
+        permitir_atualicao = True
+        
+        quantidade_disponivel = equipamento.quantidade_disponivel
+        if quantidade_disponivel < int(request.POST.get('quantidade_total')):
+            if int(request.POST.get('quantidade_total')) < equipamento.quantidade_total:
+                permitir_atualicao = False
+                messages.info(request, f"O Equipamento não pode ter a quantidade total modificada pois não terá quantidade disponível suficiente!")
 
-        if form.is_valid():
+        form = EquipamentoForm(request.POST, instance=equipamento)
+        if permitir_atualicao and form.is_valid():
             form.save()  
             messages.success(request, 'Equipamento atualizado com sucesso!')
             return redirect(obter_equipamentos)

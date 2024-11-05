@@ -141,12 +141,13 @@ def atualizar_usuario(request: WSGIRequest, id: int) -> HttpResponse:
         form = UsuarioForm(instance=usuario)
 
     user_groups = request.user.groups.values_list('name', flat=True)
+    foto = Usuario.objects.filter(id=request.user.pk).values_list('foto', flat=True).first()
     
     context = {
         'user_groups': user_groups,
         'form': form,
         'usuario': usuario,
-        'foto': usuario.foto,
+        'foto': foto,
         'MEDIA_URL': settings.MEDIA_URL
     }
     

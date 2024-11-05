@@ -56,10 +56,9 @@ Crie um banco de dados localmente usando o `MySQL` e contendo:
 ## 🟢 Execução
 ```bash
 # ⭕ OBS - Necessário ter o MAKE:
+make sqlite-run  # Executa usando o SQLite3 built-in do Django
 
-make first-sqlite-run  # Executa usando o SQLite3 built-in do Django
-
-make first-mysql-run  # Executa utilizando o MySQL configurado
+make mysql-run  # Executa utilizando o MySQL configurado
 
 
 # Ou, utilize:
@@ -67,6 +66,17 @@ set USE_SQLITE=True  # Pode ser False ou True, caso seja True usará o SQLite3. 
 cd ./ProTecHub/
 poetry run python manage.py migrate
 poetry run python manage.py runserver
+```
+
+
+## 🟢 Acessando
+```bash
+# Vá até o localhost no seu navegador (http://127.0.0.1:8000/)
+
+# Há 3 Usuários já cadastrados:
+E-mail: administrador@example.com | Senha: 123456
+E-mail: supervisor@example.com    | Senha: 123456
+E-mail: colaborador@example.com   | Senha: 123456
 ```
 
 

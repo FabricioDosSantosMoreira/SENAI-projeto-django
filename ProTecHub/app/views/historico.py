@@ -35,7 +35,7 @@ def obter_historico(request: WSGIRequest) -> HttpResponse:
     if status_query:
         filter_args['status'] = status_query.replace(' ', '_').upper()
     if name_query:
-        filter_args['nome_usuario__contains'] = name_query
+        filter_args['nome_usuario__icontains'] = name_query
 
     # Aplicando o filtro dinâmico com base nos argumentos fornecidos
     itens_historico = Historico.objects.filter(**filter_args)

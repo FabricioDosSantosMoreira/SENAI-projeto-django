@@ -33,7 +33,7 @@ def obter_historico(request: WSGIRequest) -> HttpResponse:
     # Construindo um dicionário de argumentos para o filtro
     filter_args = {}
     if status_query:
-        filter_args['status'] = status_query.replace(' ', '_')
+        filter_args['status'] = status_query.replace(' ', '_').upper()
     if name_query:
         filter_args['nome_usuario__contains'] = name_query
 

@@ -29,7 +29,7 @@ def obter_emprestimos(request: WSGIRequest) -> HttpResponse:
 
     query = request.GET.get('search')
     if query:
-        emprestimos: list[Emprestimo] = Emprestimo.objects.filter(status=query.replace(' ', '_'))
+        emprestimos: list[Emprestimo] = Emprestimo.objects.filter(status=query.replace(' ', '_').upper())
     else:
         emprestimos: list[Emprestimo] = Emprestimo.objects.all()
 

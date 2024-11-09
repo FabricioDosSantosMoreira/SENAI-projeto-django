@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from app.models import Usuario, Equipamento, Emprestimo
+from app.models import Emprestimo, Equipamento, Usuario
 
 admin.site.register(Usuario)
 admin.site.register(Equipamento)

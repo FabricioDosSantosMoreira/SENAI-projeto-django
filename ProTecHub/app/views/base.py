@@ -1,13 +1,14 @@
 from typing import Any, Dict
 
-from app.forms import UsuarioForm
-from app.models import Usuario
-
 from django.contrib import messages
 from django.contrib.auth import login, logout
 from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpResponse
 from django.shortcuts import render
+
+from app.forms import UsuarioForm
+from app.models import Usuario
+
 
 def home(request: WSGIRequest) -> HttpResponse:
     return render(request, 'pages/home.html', status=200)

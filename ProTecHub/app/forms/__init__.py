@@ -1,4 +1,4 @@
-from .usuario import *
-from .equipamento import *
 from .emprestimo import *
+from .equipamento import *
 from .historico import *
+from .usuario import *

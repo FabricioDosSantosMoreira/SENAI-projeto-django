@@ -1,8 +1,8 @@
 from django.db import models
 
 from app.models import Equipamento, Usuario
-from app.utils.enums import StatusEmprestimo
 from app.utils import obter_data_atual, obter_data_do_proximo_mes
+from app.utils.enums import StatusEmprestimo
 
 
 class Emprestimo(models.Model):

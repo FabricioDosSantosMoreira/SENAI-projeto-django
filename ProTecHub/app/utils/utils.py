@@ -1,6 +1,7 @@
-from datetime import datetime, date
-from dateutil.relativedelta import relativedelta
+from datetime import date, datetime
+
 import pytz
+from dateutil.relativedelta import relativedelta
 from django.conf import settings
 
 
@@ -19,10 +20,7 @@ def obter_data_do_proximo_mes() -> datetime:
     return obj
 
 
-def obter_data_resumida(
-        objeto: date | datetime, 
-    ) -> datetime:
-
+def obter_data_resumida(objeto: date | datetime, ) -> datetime:
     timezone = settings.TIME_ZONE
 
     if type(objeto) == date:

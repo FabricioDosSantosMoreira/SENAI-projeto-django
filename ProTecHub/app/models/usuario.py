@@ -1,11 +1,10 @@
-from django.db import models
 from datetime import datetime, timedelta
-from django.contrib.auth.hashers import make_password, check_password
-from django.db import models
-from django.contrib.auth.models import AbstractUser
-from django.contrib.auth.models import Group, Permission
 
-from app.utils.enums import TipoUsuario, Cargos
+from django.contrib.auth.hashers import check_password, make_password
+from django.contrib.auth.models import AbstractUser, Group, Permission
+from django.db import models
+
+from app.utils.enums import Cargos, TipoUsuario
 
 
 class Usuario(AbstractUser):

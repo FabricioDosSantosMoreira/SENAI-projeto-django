@@ -1,15 +1,16 @@
 from typing import Any, Dict
 
-from app.models import Usuario
-
-from .base import logar
-
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
+
+from app.models import Usuario
+
+from .base import logar
+
 
 @login_required()
 def interno(request: WSGIRequest) -> HttpResponse:

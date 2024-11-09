@@ -1,8 +1,8 @@
 from django import forms
 
 from app.models import Historico
-from app.utils.enums import StatusEmprestimo
 from app.utils import obter_data_atual
+from app.utils.enums import StatusEmprestimo
 
 
 class HistoricoForm(forms.ModelForm):

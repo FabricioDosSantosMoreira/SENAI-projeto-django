@@ -1,4 +1,5 @@
-from django.urls import path, URLPattern
+from django.urls import URLPattern, path
+
 from app import views
 
 urlpatterns: list[URLPattern] = [

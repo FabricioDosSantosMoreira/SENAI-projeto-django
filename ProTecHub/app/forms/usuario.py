@@ -1,6 +1,7 @@
 from django import forms
+
 from app.models import Usuario
-from app.utils.enums import TipoUsuario, Cargos
+from app.utils.enums import Cargos, TipoUsuario
 
 
 class UsuarioForm(forms.ModelForm):

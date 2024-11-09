@@ -1,6 +1,3 @@
-import app.utils.enums
-import app.utils.utils
-
 import django.contrib.auth.models
 import django.contrib.auth.validators
 import django.db.models.deletion
@@ -8,16 +5,15 @@ import django.utils.timezone
 from django.conf import settings
 from django.db import migrations, models
 
+import app.utils.enums
+import app.utils.utils
+
 
 class Migration(migrations.Migration):
 
     # Insere dados de exemplo
     def inserir_dados(apps, schema_editor):
-        from app.utils import (
-            obter_data_atual, 
-            obter_data_do_proximo_mes,
-            obter_data_do_proximo_ano,            
-        )
+        from app.utils import obter_data_atual, obter_data_do_proximo_ano, obter_data_do_proximo_mes
 
         Usuario = apps.get_model('app', 'Usuario')
         Equipamento = apps.get_model('app', 'Equipamento')

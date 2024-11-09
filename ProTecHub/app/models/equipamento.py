@@ -1,8 +1,8 @@
 from django.db import models
 from django.db.models import Sum
 
-from app.utils.enums import CategoriaEPI
 from app.utils import obter_data_do_proximo_ano
+from app.utils.enums import CategoriaEPI
 
 
 class Equipamento(models.Model):

@@ -1,5 +1,5 @@
 from django.apps import AppConfig
-from django.db.utils import OperationalError, IntegrityError
+from django.db.utils import IntegrityError, OperationalError
 
 
 class AppConfig(AppConfig):

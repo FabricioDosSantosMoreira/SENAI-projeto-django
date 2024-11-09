@@ -1,24 +1,19 @@
-from datetime import datetime
 from typing import List
-from django.shortcuts import render
-from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404, redirect
-from django.db.models import Sum
-from django.contrib.auth import authenticate, login
-from django.contrib import messages
-from django.shortcuts import render, redirect
-from django.core.handlers.wsgi import WSGIRequest
+
 from django.conf import settings
-
-import pytz
-from .base import home, logar
-from app.models import Usuario
-from app.forms import UsuarioForm
-from app.utils.enums import TipoUsuario
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.core.handlers.wsgi import WSGIRequest
+from django.http import HttpResponse
+from django.shortcuts import get_object_or_404, redirect, render
 
+from app.forms import UsuarioForm
+from app.models import Usuario
 from app.utils import obter_data_resumida
-from app.utils.enums import TipoUsuario, Cargos
+from app.utils.enums import Cargos, TipoUsuario
+
+from .base import home, logar
+
 
 @login_required()
 def obter_usuarios(request: WSGIRequest) -> HttpResponse: 
@@ -124,7 +119,7 @@ def atualizar_usuario(request: WSGIRequest, id: int) -> HttpResponse:
     # O Usuário está autenticado?
     if not user.is_authenticated:
         messages.error(request, 'Você não está logado!')
-        return redirect(login)
+        return redirect(logar)
 
     # Verifica se o 'ROLE' do 'Usuário' não é 'Admin'
     if not user.groups.filter(name='Admin').exists():

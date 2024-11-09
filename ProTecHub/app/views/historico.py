@@ -1,20 +1,16 @@
-from datetime import datetime
 from django.conf import settings
-from django.shortcuts import render
-from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404, redirect
-from django.db.models import Sum
-from django.contrib.auth import authenticate, login
 from django.contrib import messages
-from django.shortcuts import render, redirect
-from django.core.handlers.wsgi import WSGIRequest
-
-from app.models import Usuario, Historico, Emprestimo
-from app.forms import HistoricoForm
 from django.contrib.auth.decorators import login_required
-from .base import home, logar
+from django.core.handlers.wsgi import WSGIRequest
+from django.http import HttpResponse
+from django.shortcuts import get_object_or_404, redirect, render
+
+from app.forms import HistoricoForm
+from app.models import Emprestimo, Historico, Usuario
 from app.utils import obter_data_resumida
 from app.utils.enums import StatusEmprestimo
+
+from .base import home, logar
 
 
 @login_required

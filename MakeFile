@@ -1,4 +1,4 @@
-.PHONY: install sqlite-run mysql-run
+.PHONY: install sqlite-run mysql-run test-all
 
 install:
 	@echo "[INFO] - - -> Instalando o projeto..."     \
@@ -22,3 +22,9 @@ mysql-run:
 	&& poetry run python manage.py migrate            \
 	&& poetry run python manage.py runserver          
  
+# OBS: Use 'export' no Linux, 'set' no Windows
+test-all:
+	@echo "[INFO] - - -> Iniciando os testes..."      \
+	&& set USE_SQLITE=True                            \
+	&& cd ./ProTecHub/                                \
+	&& poetry run pytest 

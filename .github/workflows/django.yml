@@ -15,21 +15,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checar código
+    - name: Checkout
       uses: actions/checkout@v3
 
-    - name: Configurar Python
+    - name: Setup Python
       uses: actions/setup-python@v4
       with:
         python-version: '3.10'
 
-    - name: Instalar dependências
+    - name: Run install
       run: |
         cd ./ProTecHub/         
         pip install poetry
         poetry install 
         
-    - name: Rodar testes
+    - name: Run tests
       run: |
         cd ./ProTecHub/  
         export USE_SQLITE=True

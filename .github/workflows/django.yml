@@ -1,0 +1,35 @@
+name: CI Workflow
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checar código
+      uses: actions/checkout@v3
+
+    - name: Configurar Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+
+    - name: Instalar dependências
+      run: |
+        cd ./ProTecHub/         
+        pip install poetry
+        poetry install 
+        
+    - name: Rodar testes
+      run: |
+        cd ./ProTecHub/  
+        poetry run pytest

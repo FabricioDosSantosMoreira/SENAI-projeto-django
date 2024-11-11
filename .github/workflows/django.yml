@@ -1,32 +1,35 @@
-name: Django CI
+name: CI Workflow
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
+      - develop
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
+      - develop
 
 jobs:
-  build:
-
+  test:
     runs-on: ubuntu-latest
-    strategy:
-      max-parallel: 4
-      matrix:
-        python-version: [3.7, 3.8, 3.9]
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v3
+    - name: Checar código
+      uses: actions/checkout@v3
+
+    - name: Configurar Python
+      uses: actions/setup-python@v4
       with:
-        python-version: ${{ matrix.python-version }}
-    - name: Install Dependencies
+        python-version: '3.x'
+
+    - name: Instalar dependências
       run: |
         cd ./ProTecHub/         
         pip install poetry
         poetry install 
-    - name: Run Tests
+        
+    - name: Rodar testes
       run: |
         cd ./ProTecHub/  
         poetry run pytest

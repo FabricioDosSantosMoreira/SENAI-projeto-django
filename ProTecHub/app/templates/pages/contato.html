@@ -5,7 +5,47 @@
 {% block title %}Contato | ProTecHub{% endblock title %} 
 
 {% block content %}
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato - Meu Site</title>
+</head>
+<body>
+    
+    <header>
+        <h1>Entre em Contato</h1>
+    </header>
+
+
+    <section class="content">
+        <div class="contact-info">
+            <p>E-mail: protechub@gmail.com</p>
+            <p>Telefone: (11) 1234-5678</p>
+            <p>Endereço: Rua do Contato, 123</p>
+        </div>
+
+        <div class="contact-form">
+            <h2>Formulário de Contato</h2>
+            <form>
+                <label for="name">Nome:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="message">Mensagem:</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+
+                <button type="submit">Enviar Mensagem</button>
+            </form>
+        </div>
+    </section>
+</body>
+</html>
+
 <style>
+
   /* Injeta um estilo que sobrepõe uma imagem */
   body::before {
     content: "";
@@ -29,8 +69,106 @@
     width: 100vw;
     height: 100vh;
     background-size: cover;
-    background-color: rgba(0, 0, 0, 0.6); /* Ajusta a cor e a opacidade da sobreposição */
+    background-color: rgb(0, 0, 0); /* Ajusta a cor e a opacidade da sobreposição */
     z-index: -1; /* Mantém a camada atrás do conteúdo */
   }
+ 
+  header {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Align items to center horizontally */
+  }
+  
+  header h1 {
+    color: #ffffff;
+    margin-bottom: 10px;
+    text-align: center; /* Align text within the header */
+  }
+  
+  header h2, p {
+    color: #ffffff;
+    margin-bottom: 10px;
+  }
+  .content {
+    padding: 20px;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.content h2 {
+    color: #ffffff;
+}
+
+.contact-info {
+  position: absolute;
+  bottom: 40px;
+  right: 40px; 
+    flex-basis: 40%;
+    text-align: justify;
+}
+
+.contact-form {
+    flex-basis: 50%;
+}
+
+form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #ffcc00;
+}
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  label {
+    margin-bottom: 5px; /* Espaçamento entre o rótulo e o campo */
+  }
+  .contact-form {
+    color: #ffffff;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px; /* Espaçamento entre as linhas */
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .label {
+    position: relative;
+    top: -10px; /* Ajuste o valor para controlar a posição vertical */
+  }
+
+  
 </style>
 {% endblock content %}

@@ -1,8 +1,42 @@
 {% extends "global/primary_base.html" %} 
 
-{% load static %} {% block title %}Sobre | ProTecHub{% endblock title %} 
+{% load static %} 
+{% block title %}Sobre | ProTecHub{% endblock title %} 
 
 {% block content %}
+
+<html lang="pt-BR">
+<head>
+    <title>ProTecHub - Gestão de EPIs</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h2>Sua parceira na gestão de EPIs</h2>
+
+    <p>A ProTecHub é uma empresa especializada em oferecer soluções tecnológicas inovadoras para a gestão eficiente de Equipamentos de Proteção Individual (EPIs). Com um profundo entendimento das necessidades de empresas de diversos setores, a ProTecHub desenvolveu uma plataforma completa e intuitiva que simplifica e otimiza todos os processos relacionados à gestão de EPIs.</p>
+
+    <h3>Por que escolher a ProTecHub?</h3>
+    <ul>
+        <li><strong>Tecnologia de ponta:</strong> Nossa plataforma utiliza as mais recentes tecnologias para garantir a segurança e a confiabilidade dos dados, proporcionando uma experiência de uso intuitiva e eficiente.</li>
+        <li><strong>Personalização:</strong> Adaptamos nossas soluções às necessidades específicas de cada cliente, oferecendo funcionalidades personalizadas e integração com outros sistemas existentes.</li>
+        <li><strong>Conformidade normativa:</strong> Garantimos que todas as nossas soluções estejam em conformidade com as normas regulamentadoras (NRs) e legislação trabalhista vigente.</li>
+        <li><strong>Suporte especializado:</strong> Nossa equipe de especialistas está sempre à disposição para oferecer suporte técnico e tirar dúvidas, garantindo que você tire o máximo proveito da nossa plataforma.</li>
+    </ul>
+
+    <h3>O que a ProTecHub oferece?</h3>
+    <ul>
+        <li>Cadastro e controle de EPIs</li>
+        <li>Gerenciamento de funcionários</li>
+        <li>Controle de estoque</li>
+        <li>Emissão de relatórios</li>
+        <li>Integração com outros sistemas</li>
+        <li>Módulo de treinamento</li>
+    </ul>
+
+    <p>Entre em contato conosco e descubra como podemos ajudar a sua empresa!</p>
+</body>
+</html>
+
 <style>
   /* Injeta um estilo que sobrepõe uma imagem */
   body::before {
@@ -19,16 +53,24 @@
     z-index: -1; /* Coloca a imagem atrás do conteúdo  */
   }
 
-  body::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-size: cover;
-    background-color: rgba(0, 0, 0, 0.6); /* Ajusta a cor e a opacidade da sobreposição */
-    z-index: -1; /* Mantém a camada atrás do conteúdo */
-  }
+  /* ... (seu CSS existente) */
+
+/* Estilos para todos os títulos e parágrafos */
+ h2, h3, p, li {
+  font-weight: bold;
+  color: rgb(253, 215, 1);
+}
+
+/* Estilos específicos para cada nível de título */
+
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
 </style>
 {% endblock content %}

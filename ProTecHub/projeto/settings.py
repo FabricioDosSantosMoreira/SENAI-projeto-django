@@ -79,9 +79,9 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'gerenciamento',
+            'NAME': 'epis',
             'USER': 'root',
-            'PASSWORD': '123456',
+            'PASSWORD': '190205',
             'HOST': 'localhost',
             'PORT': '3306',
         }

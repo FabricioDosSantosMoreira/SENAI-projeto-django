@@ -11,66 +11,136 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h2>Sua parceira na gestão de EPIs</h2>
-
-    <p>A ProTecHub é uma empresa especializada em oferecer soluções tecnológicas inovadoras para a gestão eficiente de Equipamentos de Proteção Individual (EPIs). Com um profundo entendimento das necessidades de empresas de diversos setores, a ProTecHub desenvolveu uma plataforma completa e intuitiva que simplifica e otimiza todos os processos relacionados à gestão de EPIs.</p>
-
-    <h3>Por que escolher a ProTecHub?</h3>
-    <ul>
-        <li><strong>Tecnologia de ponta:</strong> Nossa plataforma utiliza as mais recentes tecnologias para garantir a segurança e a confiabilidade dos dados, proporcionando uma experiência de uso intuitiva e eficiente.</li>
-        <li><strong>Personalização:</strong> Adaptamos nossas soluções às necessidades específicas de cada cliente, oferecendo funcionalidades personalizadas e integração com outros sistemas existentes.</li>
-        <li><strong>Conformidade normativa:</strong> Garantimos que todas as nossas soluções estejam em conformidade com as normas regulamentadoras (NRs) e legislação trabalhista vigente.</li>
-        <li><strong>Suporte especializado:</strong> Nossa equipe de especialistas está sempre à disposição para oferecer suporte técnico e tirar dúvidas, garantindo que você tire o máximo proveito da nossa plataforma.</li>
-    </ul>
-
-    <h3>O que a ProTecHub oferece?</h3>
-    <ul>
-        <li>Cadastro e controle de EPIs</li>
-        <li>Gerenciamento de funcionários</li>
-        <li>Controle de estoque</li>
-        <li>Emissão de relatórios</li>
-        <li>Integração com outros sistemas</li>
-        <li>Módulo de treinamento</li>
-    </ul>
-
-    <p>Entre em contato conosco e descubra como podemos ajudar a sua empresa!</p>
+  <body>
+    <div class="txt">
+      <!-- Div para o título h2 -->
+      <div class="section-title">
+        <h2>Sua parceira na gestão de EPIs</h2>
+      </div>
+  
+      <!-- Div para o parágrafo -->
+      <div class="section-text">
+        <p>A ProTecHub é uma empresa especializada em oferecer soluções tecnológicas inovadoras para a gestão eficiente de Equipamentos de Proteção Individual (EPIs). Com um profundo entendimento das necessidades de empresas de diversos setores, a ProTecHub desenvolveu uma plataforma completa e intuitiva que simplifica e otimiza todos os processos relacionados à gestão de EPIs.</p>
+      </div>
+  
+      <!-- Div para o título h3 -->
+      <div class="section-title">
+        <h3>Por que escolher a ProTecHub?</h3>
+      </div>
+  
+      <!-- Div para a lista -->
+      <div class="section-list">
+        <ul>
+          <li><strong>Tecnologia de ponta:</strong> Nossa plataforma utiliza as mais recentes tecnologias para garantir a segurança e a confiabilidade dos dados, proporcionando uma experiência de uso intuitiva e eficiente.</li>
+          <li><strong>Personalização:</strong> Adaptamos nossas soluções às necessidades específicas de cada cliente, oferecendo funcionalidades personalizadas e integração com outros sistemas existentes.</li>
+          <li><strong>Conformidade normativa:</strong> Garantimos que todas as nossas soluções estejam em conformidade com as normas regulamentadoras (NRs) e legislação trabalhista vigente.</li>
+          <li><strong>Suporte especializado:</strong> Nossa equipe de especialistas está sempre à disposição para oferecer suporte técnico e tirar dúvidas, garantindo que você tire o máximo proveito da nossa plataforma.</li>
+        </ul>
+      </div>
+  
+      <!-- Div para o título h3 -->
+      <div class="section-title">
+        <h3>O que a ProTecHub oferece?</h3>
+      </div>
+  
+      <!-- Div para a lista -->
+      <div class="section-list">
+        <ul>
+          <li>Cadastro e controle de EPIs</li>
+          <li>Gerenciamento de funcionários</li>
+          <li>Controle de estoque</li>
+          <li>Emissão de relatórios</li>
+          <li>Integração com outros sistemas</li>
+          <li>Módulo de treinamento</li>
+        </ul>
+      </div>
+    </div>
 </body>
 </html>
 
 <style>
   /* Injeta um estilo que sobrepõe uma imagem */
-  body::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-image: url("{% static 'img/background_home.png' %}");
-    background-size: cover;
-    background-position: right bottom;
-    background-repeat: no-repeat;
-    z-index: -1; /* Coloca a imagem atrás do conteúdo  */
-  }
+/* Injeta um estilo que sobrepõe uma imagem */
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 150vh;
+  background-image: url("{% static 'img/background_home.png' %}");
+  background-size: cover;
+  background-position: right bottom;
+  background-repeat: no-repeat;
+  z-index: -1; /* Coloca a imagem atrás do conteúdo  */
+}
 
-  /* ... (seu CSS existente) */
+body::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 150vh;
+  background-size: cover;
+  background-color: rgba(0, 0, 0, 0.6); /* Ajusta a cor e a opacidade da sobreposição */
+  z-index: -1; /* Mantém a camada atrás do conteúdo */
+}
 
-/* Estilos para todos os títulos e parágrafos */
- h2, h3, p, li {
+.txt {
+  padding: 20px;
+  border-radius: 10px; /* Bordas arredondadas */
+  max-width: 900px;
+  text-align: justify; /* Justifica o texto */
+  font-size: medium; /* Tamanho médio para o texto geral */
+}
+
+/* Estilo para divs internas */
+.txt div {
+  width: 100%;
   font-weight: bold;
-  color: rgb(253, 215, 1);
 }
 
-/* Estilos específicos para cada nível de título */
-
-
-h2 {
-  font-size: 2rem;
+/* Estilo para os títulos h2 */
+.section-title h2 {
+  font-size: 2rem; /* Aumentando o tamanho do h2 */
+  margin-bottom: 1.5rem; /* Espaço abaixo do título */
+  color: white;
 }
 
-h3 {
-  font-size: 1.5rem;
+/* Estilo para os subtítulos h3 */
+.section-title h3 {
+  font-size: 1.5rem; /* Aumentando o tamanho do h3 */
+  margin-bottom: 1.5rem; /* Espaço abaixo do subtítulo */
+  color: white;
 }
 
+/* Estilos para o parágrafo .section-text */
+.section-text {
+  margin-bottom: 1.5rem; /* Espaçamento entre parágrafos */
+  font-size: 0.9rem; /* Diminuindo o tamanho do texto */
+  color: white;
+}
+
+/* Estilos para as listas dentro da .section-list */
+.section-list {
+  margin-bottom: 1rem; /* Espaçamento entre listas e outros elementos */
+  color: white;
+  font-size: 0.9rem; /* Diminuindo o tamanho do texto da lista */
+}
+
+/* Estilo para a lista não ordenada */
+.section-list ul {
+  list-style-type: disc; /* Adiciona marcadores na lista */
+  padding-left: 20px; /* Recuo para os itens da lista */
+  color: white;
+}
+
+/* Estilo para os itens da lista */
+.section-list li {
+  font-size: 0.9rem; /* Diminuindo o tamanho do item da lista */
+  margin-bottom: 0.5rem; /* Espaço entre os itens da lista */
+  color: white;
+}
 </style>
 {% endblock content %}

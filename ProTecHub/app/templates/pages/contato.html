@@ -14,17 +14,12 @@
 <body>
     
     <header>
-        <h1>Entre em Contato</h1>
+        <h4>Entre em Contato</h1>
     </header>
 
 
     <section class="content">
-        <div class="contact-info">
-            <p>E-mail: protechub@gmail.com</p>
-            <p>Telefone: (11) 1234-5678</p>
-            <p>Endereço: Rua do Contato, 123</p>
-        </div>
-
+      
         <div class="contact-form">
             <h2>Formulário de Contato</h2>
             <form>
@@ -40,6 +35,12 @@
                 <button type="submit">Enviar Mensagem</button>
             </form>
         </div>
+        <div class="contact-info">
+          <p>E-mail: protechub@gmail.com</p>
+          <p>Telefone: (48) 1234-5678</p>
+          <p>Endereço: Rua dos Santos, 123</p>
+      </div>
+
     </section>
 </body>
 </html>
@@ -48,41 +49,45 @@
 
   /* Injeta um estilo que sobrepõe uma imagem */
   body::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-image: url("{% static 'img/background_home.png' %}");
-    background-size: cover;
-    background-position: right bottom;
-    background-repeat: no-repeat;
-    z-index: -1; /* Coloca a imagem atrás do conteúdo  */
-  }
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 150vh;
+  background-image: url("{% static 'img/background_home.png' %}");
+  background-size: cover;
+  background-position: right bottom;
+  background-repeat: no-repeat;
+  z-index: -1; /* Coloca a imagem atrás do conteúdo  */
+}
 
-  body::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-size: cover;
-    background-color: rgb(0, 0, 0); /* Ajusta a cor e a opacidade da sobreposição */
-    z-index: -1; /* Mantém a camada atrás do conteúdo */
-  }
+body::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 150vh;
+  background-size: cover;
+  background-color: rgba(0, 0, 0, 0.6); /* Ajusta a cor e a opacidade da sobreposição */
+  z-index: -1; /* Mantém a camada atrás do conteúdo */
+}
  
   header {
     display: flex;
     flex-direction: column;
     align-items: center; /* Align items to center horizontally */
+    
   }
   
-  header h1 {
+  header h4 {
     color: #ffffff;
+    font-size: x-large;
     margin-bottom: 10px;
-    text-align: center; /* Align text within the header */
+    margin-top: 20px;
+    text-align: center; 
+    /* Align text within the header */
   }
   
   header h2, p {
@@ -90,27 +95,38 @@
     margin-bottom: 10px;
   }
   .content {
-    padding: 20px;
-    border-bottom: 1px solid #ccc;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-
-.content h2 {
-    color: #ffffff;
+    flex-direction: column; /* Organiza o conteúdo em coluna */
+    justify-content: center; /* Centraliza verticalmente */
+    align-items: center; /* Centraliza horizontalmente */
+    margin-top: 300px;
+    padding: 100px;
+    text-align: center;
 }
 
 .contact-info {
-  position: absolute;
-  bottom: 40px;
-  right: 40px; 
+    position: absolute;
+    bottom: 40px;
+    right: 40px; 
     flex-basis: 40%;
     text-align: justify;
+    margin: auto;
 }
 
 .contact-form {
-    flex-basis: 50%;
+    flex-basis: 50%; /* Mantém a largura proporcional */
+    max-width: 600px; /* Define uma largura máxima para evitar que fique muito grande */
+    width: 100%; /* Garante que ocupe 100% do espaço disponível */
+    padding: 20px; /* Adiciona espaçamento interno */
+    border-radius: 10px; /* Cantos arredondados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adiciona uma sombra para destaque */
+    margin-top: -35%;
+    font-size: x-large;
+}
+ 
+
+.content h2 {
+    color: #ffffff;
 }
 
 form {
@@ -143,11 +159,14 @@ button {
 button:hover {
     background-color: #ffcc00;
 }
-  .form-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
+.form-container {
+    display: flex; /* Usamos Flexbox para centralizar */
+    flex-direction: column; /* Alinha os itens em coluna */
+    justify-content: center; /* Centraliza verticalmente */
+    align-items: center; /* Centraliza horizontalmente */
+    height: 100vh; /* Faz com que o contêiner ocupe toda a altura da página */
+    text-align: center; /* Garante que o conteúdo interno seja centralizado */
+}
   
   label {
     margin-bottom: 5px; /* Espaçamento entre o rótulo e o campo */

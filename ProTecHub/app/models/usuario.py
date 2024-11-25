@@ -1,8 +1,10 @@
 from datetime import datetime, timedelta
+import uuid
 
 from django.contrib.auth.hashers import check_password, make_password
 from django.contrib.auth.models import AbstractUser, Group, Permission
 from django.db import models
+from django.utils.text import slugify
 
 from app.utils.enums import Cargos, TipoUsuario
 
@@ -17,8 +19,15 @@ class Usuario(AbstractUser):
     foto = models.ImageField(upload_to='usuarios/', null=True, blank=True)
     data_admissao = models.DateTimeField(auto_now_add=True)
 
+    slug = models.SlugField(unique=True, blank=True)
 
+    
     def save(self, *args, **kwargs) -> None:
+        # Apenas gera o slug se não existir
+        if not self.slug:  
+            # Gera um slug com UUID
+            self.slug = slugify(f"{uuid.uuid4()}")
+            
         # NOTE: O Django obriga a ter um 'username' quando herda de 'AbstractUser'
         if not self.username:  
             self.username = self.email  

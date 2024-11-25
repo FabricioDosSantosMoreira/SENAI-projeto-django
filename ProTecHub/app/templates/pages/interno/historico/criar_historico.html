@@ -28,7 +28,7 @@
     <div class="form-message error">{{ field.errors.as_text }}</div>
     {% endif %} {% endfor %}
 
-    <form action="{% url 'arquivar_emprestimo_no_historico' emprestimo.id %}" method="POST">
+    <form action="{% url 'arquivar_emprestimo_no_historico' emprestimo.slug %}" method="POST">
       {% csrf_token %}
       <div class="column">
         

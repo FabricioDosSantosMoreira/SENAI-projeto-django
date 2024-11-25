@@ -89,7 +89,7 @@ def criar_equipamento(request: WSGIRequest) -> HttpResponse:
 
 
 @login_required()
-def deletar_equipamento(request: WSGIRequest, id: int) -> HttpResponse:
+def deletar_equipamento(request: WSGIRequest, slug: str) -> HttpResponse:
     user = request.user
 
     # O Usuário está autenticado?
@@ -102,7 +102,7 @@ def deletar_equipamento(request: WSGIRequest, id: int) -> HttpResponse:
         messages.warning(request, 'Você não possui permissão!')
         return redirect(home)    
 
-    equipamento = get_object_or_404(Equipamento, id=id)
+    equipamento = get_object_or_404(Equipamento, slug=slug)
     equipamento.delete()
     messages.success(request, 'Equipamento deletado com sucesso!')
 
@@ -110,7 +110,7 @@ def deletar_equipamento(request: WSGIRequest, id: int) -> HttpResponse:
 
 
 @login_required()
-def atualizar_equipamento(request: WSGIRequest, id: int) -> HttpResponse:
+def atualizar_equipamento(request: WSGIRequest, slug: str) -> HttpResponse:
     user = request.user
 
     # O Usuário está autenticado?
@@ -123,7 +123,7 @@ def atualizar_equipamento(request: WSGIRequest, id: int) -> HttpResponse:
         messages.warning(request, 'Você não possui permissão!')
         return redirect(home)
 
-    equipamento: Equipamento = get_object_or_404(Equipamento, id=id) 
+    equipamento: Equipamento = get_object_or_404(Equipamento, slug=slug) 
 
     if request.method == 'POST':
         permitir_atualicao = True

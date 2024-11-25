@@ -79,10 +79,10 @@
             <td>{{ usuario.data_admissao }}</td>
             <td>
               <div class="row table-buttons">
-                <a class="table-update-button" href="{% url 'atualizar_usuario' usuario.id %}">
+                <a class="table-update-button" href="{% url 'atualizar_usuario' usuario.slug %}">
                   <img src="{% static 'img/icons/icons8-update.png' %}" alt="Editar" />
                 </a>
-                <a class="table-delete-button deleteButton" data-url="{% url 'deletar_usuario' usuario.id %}" onclick="toggleDeletionPopUp(this)">
+                <a class="table-delete-button deleteButton" data-url="{% url 'deletar_usuario' usuario.slug %}" onclick="toggleDeletionPopUp(this)">
                   <img src="{% static 'img/icons/icons8-trash.png' %}" alt="Remover" />
                 </a>
               </div>

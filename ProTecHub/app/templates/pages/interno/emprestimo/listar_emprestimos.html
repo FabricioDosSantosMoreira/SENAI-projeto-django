@@ -88,13 +88,13 @@
             <td>{{ emprestimo.data_devolucao_prevista }}</td>
             <td>
               <div class="row table-buttons">
-                <a class="table-update-button" href="{% url 'atualizar_emprestimo' emprestimo.id %}">
+                <a class="table-update-button" href="{% url 'atualizar_emprestimo' emprestimo.slug %}">
                   <img src="{% static 'img/icons/icons8-update.png' %}" alt="Editar" />
                 </a>
-                <a class="table-save-button" href="{% url 'arquivar_emprestimo_no_historico' emprestimo.id %}">
+                <a class="table-save-button" href="{% url 'arquivar_emprestimo_no_historico' emprestimo.slug %}">
                   <img src="{% static 'img/icons/icons8-save.png' %}" alt="Arquivar" />
                 </a>
-                <a class="table-delete-button deleteButton" data-url="{% url 'deletar_emprestimo' emprestimo.id %}" onclick="toggleDeletionPopUp(this)">
+                <a class="table-delete-button deleteButton" data-url="{% url 'deletar_emprestimo' emprestimo.slug %}" onclick="toggleDeletionPopUp(this)">
                   <img src="{% static 'img/icons/icons8-trash.png' %}" alt="Remover" />
                 </a>
               </div>

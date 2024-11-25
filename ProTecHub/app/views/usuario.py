@@ -92,7 +92,7 @@ def criar_usuario(request: WSGIRequest) -> HttpResponse:
 
 
 @login_required()
-def deletar_usuario(request: WSGIRequest, id: int) -> HttpResponse:
+def deletar_usuario(request: WSGIRequest, slug: str) -> HttpResponse:
     user = request.user
 
     # O Usuário está autenticado?
@@ -105,7 +105,7 @@ def deletar_usuario(request: WSGIRequest, id: int) -> HttpResponse:
         messages.warning(request, 'Você não possui permissão!')
         return redirect(home)    
 
-    usuario = get_object_or_404(Usuario, id=id)
+    usuario = get_object_or_404(Usuario, slug=slug)
     usuario.delete()
     messages.success(request, 'Usuário deletado com sucesso!')
 
@@ -113,7 +113,7 @@ def deletar_usuario(request: WSGIRequest, id: int) -> HttpResponse:
 
 
 @login_required()
-def atualizar_usuario(request: WSGIRequest, id: int) -> HttpResponse:
+def atualizar_usuario(request: WSGIRequest, slug: str) -> HttpResponse:
     user = request.user
 
     # O Usuário está autenticado?
@@ -126,7 +126,7 @@ def atualizar_usuario(request: WSGIRequest, id: int) -> HttpResponse:
         messages.warning(request, 'Você não possui permissão!')
         return redirect(logar)
     
-    usuario = get_object_or_404(Usuario, id=id) 
+    usuario = get_object_or_404(Usuario, slug=slug) 
 
     if request.method == 'POST':
         form = UsuarioForm(request.POST, request.FILES, instance=usuario)

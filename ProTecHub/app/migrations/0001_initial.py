@@ -1,9 +1,12 @@
+import uuid
+
 import django.contrib.auth.models
 import django.contrib.auth.validators
 import django.db.models.deletion
 import django.utils.timezone
 from django.conf import settings
 from django.db import migrations, models
+from django.utils.text import slugify
 
 import app.utils.enums
 import app.utils.utils
@@ -37,6 +40,7 @@ class Migration(migrations.Migration):
                 is_staff=False,
                 is_active=True,
                 date_joined=obter_data_atual(),
+                slug=slugify(f"{uuid.uuid4()}"),
             )
                 
         if not Usuario.objects.filter(email="supervisor@example.com").exists():
@@ -55,6 +59,7 @@ class Migration(migrations.Migration):
                 is_staff=False,
                 is_active=True,
                 date_joined=obter_data_atual(),
+                slug=slugify(f"{uuid.uuid4()}"),
             )
             
         if not Usuario.objects.filter(email="colaborador@example.com").exists():
@@ -73,6 +78,7 @@ class Migration(migrations.Migration):
                 is_staff=False,
                 is_active=True,
                 date_joined=obter_data_atual(),
+                slug=slugify(f"{uuid.uuid4()}"),
             )
 
         # Inserir equipamentos
@@ -81,7 +87,8 @@ class Migration(migrations.Migration):
                 nome="Óculos de Proteção",
                 categoria="PROTECAO_OCULAR_E_FACIAL",
                 quantidade_total=50,
-                validade=obter_data_do_proximo_ano()
+                validade=obter_data_do_proximo_ano(),
+                slug=slugify(f"{uuid.uuid4()}"),
             )
 
         if not Equipamento.objects.filter(nome="Luvas de Segurança").exists():
@@ -89,7 +96,8 @@ class Migration(migrations.Migration):
                 nome="Luvas de Segurança",
                 categoria="PROTECAO_MAOS_E_BRACOS",
                 quantidade_total=100,
-                validade=obter_data_do_proximo_ano()
+                validade=obter_data_do_proximo_ano(),
+                slug=slugify(f"{uuid.uuid4()}"),
             )
 
         if not Equipamento.objects.filter(nome="Capacete de Segurança").exists():
@@ -97,9 +105,10 @@ class Migration(migrations.Migration):
                 nome="Capacete de Segurança",
                 categoria="PROTECAO_CONTRA_QUEDA",
                 quantidade_total=75,
-                validade=obter_data_do_proximo_ano()
+                validade=obter_data_do_proximo_ano(),
+                slug=slugify(f"{uuid.uuid4()}"),         
             )
-
+            
         # Inserir empréstimos
         if not Emprestimo.objects.filter(usuario_id=2, equipamento_id=1).exists():
             Emprestimo.objects.create(
@@ -108,7 +117,8 @@ class Migration(migrations.Migration):
                 data_emprestimo=obter_data_atual(),
                 data_devolucao_prevista=obter_data_do_proximo_mes(),
                 usuario_id=2,
-                equipamento_id=1
+                equipamento_id=1,
+                slug=slugify(f"{uuid.uuid4()}"),
             )
 
         if not Emprestimo.objects.filter(usuario_id=3, equipamento_id=2).exists():
@@ -118,7 +128,8 @@ class Migration(migrations.Migration):
                 data_emprestimo=obter_data_atual(),
                 data_devolucao_prevista=obter_data_do_proximo_mes(),
                 usuario_id=3,
-                equipamento_id=2
+                equipamento_id=2,
+                slug=slugify(f"{uuid.uuid4()}"),
             )
 
         if not Emprestimo.objects.filter(usuario_id=3, equipamento_id=3).exists():
@@ -128,7 +139,8 @@ class Migration(migrations.Migration):
                 data_emprestimo=obter_data_atual(),
                 data_devolucao_prevista=obter_data_do_proximo_mes(),
                 usuario_id=3,
-                equipamento_id=3
+                equipamento_id=3,
+                slug=slugify(f"{uuid.uuid4()}"),
             )
 
         # Inserir histórico
@@ -140,7 +152,8 @@ class Migration(migrations.Migration):
                 data_emprestimo=obter_data_atual(),
                 data_devolucao_efetiva=obter_data_atual(),
                 nome_equipamento="Óculos de Proteção",
-                nome_usuario="Supervisor"
+                nome_usuario="Supervisor",
+                slug=slugify(f"{uuid.uuid4()}"),
             )
 
         if not Historico.objects.filter(nome_equipamento="Luvas de Segurança", nome_usuario="Colaborador").exists():
@@ -151,7 +164,8 @@ class Migration(migrations.Migration):
                 data_emprestimo=obter_data_atual(),
                 data_devolucao_efetiva=obter_data_atual(),
                 nome_equipamento="Luvas de Segurança",
-                nome_usuario="Colaborador"
+                nome_usuario="Colaborador",
+                slug=slugify(f"{uuid.uuid4()}"),
             )
 
         if not Historico.objects.filter(nome_equipamento="Capacete de Segurança", nome_usuario="Colaborador").exists():
@@ -162,7 +176,8 @@ class Migration(migrations.Migration):
                 data_emprestimo=obter_data_atual(),
                 data_devolucao_efetiva=None,
                 nome_equipamento="Capacete de Segurança",
-                nome_usuario="Colaborador"
+                nome_usuario="Colaborador",
+                slug=slugify(f"{uuid.uuid4()}"),
             )
                
     initial = True
@@ -180,6 +195,7 @@ class Migration(migrations.Migration):
                 ('categoria', models.CharField(choices=[('PROTECAO_OCULAR_E_FACIAL', 'Proteção Ocular e Facial'), ('PROTECAO_MAOS_E_BRACOS', 'Proteção das Mãos e Braços'), ('PROTECAO_CONTRA_QUEDA', 'Proteção Contra Queda'), ('PROTECAO_RESPIRATORIA', 'Proteção Respiratória'), ('PROTECAO_PES_E_PERNAS', 'Proteção dos Pés e Pernas'), ('PROTECAO_AUDITIVA', 'Proteção Auditiva')], max_length=100)),
                 ('quantidade_total', models.PositiveIntegerField(default=1)),
                 ('validade', models.DateField(default=app.utils.utils.obter_data_do_proximo_ano)),
+                ('slug', models.SlugField(blank=True, unique=True)),
             ],
         ),
         migrations.CreateModel(
@@ -193,6 +209,7 @@ class Migration(migrations.Migration):
                 ('data_devolucao_efetiva', models.DateTimeField(default=app.utils.utils.obter_data_atual, null=True)),
                 ('nome_equipamento', models.CharField(max_length=255)),
                 ('nome_usuario', models.CharField(max_length=255)),
+                ('slug', models.SlugField(blank=True, unique=True)),
             ],
         ),
         migrations.CreateModel(
@@ -216,6 +233,7 @@ class Migration(migrations.Migration):
                 ('data_admissao', models.DateTimeField(auto_now_add=True)),
                 ('groups', models.ManyToManyField(blank=True, help_text='The groups this user belongs to. A user will get all permissions granted to each of their groups.', related_name='user_set', related_query_name='user', to='auth.group', verbose_name='groups')),
                 ('user_permissions', models.ManyToManyField(blank=True, help_text='Specific permissions for this user.', related_name='user_set', related_query_name='user', to='auth.permission', verbose_name='user permissions')),
+                ('slug', models.SlugField(blank=True, unique=True)),
             ],
             options={
                 'verbose_name': 'user',
@@ -236,6 +254,7 @@ class Migration(migrations.Migration):
                 ('data_devolucao_prevista', models.DateTimeField(default=app.utils.utils.obter_data_do_proximo_mes)),
                 ('usuario', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
                 ('equipamento', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='emprestimos', to='app.equipamento')),
+                ('slug', models.SlugField(blank=True, unique=True)),
             ],
         ),
 

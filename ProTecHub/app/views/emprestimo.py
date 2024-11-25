@@ -110,7 +110,7 @@ def criar_emprestimo(request: WSGIRequest) -> HttpResponse:
 
 
 @login_required()
-def deletar_emprestimo(request: WSGIRequest, id: int) -> HttpResponse:
+def deletar_emprestimo(request: WSGIRequest, slug: str) -> HttpResponse:
     user = request.user
 
     # O Usuário está autenticado?
@@ -123,7 +123,7 @@ def deletar_emprestimo(request: WSGIRequest, id: int) -> HttpResponse:
         messages.warning(request, 'Você não possui permissão!')
         return redirect(home)    
 
-    emprestimo = get_object_or_404(Emprestimo, id=id)
+    emprestimo = get_object_or_404(Emprestimo, slug=slug)
     emprestimo.delete()
     messages.success(request, 'Empréstimo deletado com sucesso!')
 
@@ -131,7 +131,7 @@ def deletar_emprestimo(request: WSGIRequest, id: int) -> HttpResponse:
 
 
 @login_required()
-def atualizar_emprestimo(request: WSGIRequest, id: int) -> HttpResponse:
+def atualizar_emprestimo(request: WSGIRequest, slug: str) -> HttpResponse:
     user = request.user
 
     # O Usuário está autenticado?
@@ -144,7 +144,7 @@ def atualizar_emprestimo(request: WSGIRequest, id: int) -> HttpResponse:
         messages.warning(request, 'Você não possui permissão!')
         return redirect(home)
 
-    emprestimo = get_object_or_404(Emprestimo, id=id) 
+    emprestimo = get_object_or_404(Emprestimo, slug=slug) 
     
     if request.method == 'POST':
         permitir_emprestimo: bool = True

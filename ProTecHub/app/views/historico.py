@@ -70,7 +70,7 @@ def obter_historico(request: WSGIRequest) -> HttpResponse:
 
 
 @login_required()
-def arquivar_emprestimo_no_historico(request: WSGIRequest, id_emprestimo: int) -> HttpResponse:
+def arquivar_emprestimo_no_historico(request: WSGIRequest, slug: str) -> HttpResponse:
     user = request.user
 
     # O Usuário está autenticado?
@@ -82,8 +82,8 @@ def arquivar_emprestimo_no_historico(request: WSGIRequest, id_emprestimo: int) -
     if not user.groups.filter(name__in=['Admin', 'Supervisor']).exists():
         messages.warning(request, 'Você não possui permissão!')
         return redirect(home)
-    
-    emprestimo = get_object_or_404(Emprestimo, id=id_emprestimo)
+
+    emprestimo = get_object_or_404(Emprestimo, slug=slug)
     nome_usuario = emprestimo.usuario.nome
     nome_equipamento = emprestimo.equipamento.nome
     data_emprestimo =  emprestimo.data_emprestimo
@@ -130,7 +130,7 @@ def arquivar_emprestimo_no_historico(request: WSGIRequest, id_emprestimo: int) -
 
 
 @login_required()
-def deletar_item_historico(request: WSGIRequest, id: int) -> HttpResponse:
+def deletar_item_historico(request: WSGIRequest, slug: str) -> HttpResponse:
     user = request.user
 
     # O Usuário está autenticado?
@@ -143,7 +143,7 @@ def deletar_item_historico(request: WSGIRequest, id: int) -> HttpResponse:
         messages.warning(request, 'Você não possui permissão!')
         return redirect(home)    
 
-    item_historico = get_object_or_404(Historico, id=id)
+    item_historico = get_object_or_404(Historico, slug=slug)
     item_historico.delete()
     messages.success(request, 'Item deletado com sucesso!')
 
@@ -151,7 +151,7 @@ def deletar_item_historico(request: WSGIRequest, id: int) -> HttpResponse:
 
 
 @login_required()
-def atualizar_item_historico(request: WSGIRequest, id: int) -> HttpResponse:
+def atualizar_item_historico(request: WSGIRequest, slug: str) -> HttpResponse:
     user = request.user
 
     # O Usuário está autenticado?
@@ -164,14 +164,14 @@ def atualizar_item_historico(request: WSGIRequest, id: int) -> HttpResponse:
         messages.warning(request, 'Você não possui permissão!')
         return redirect(home)
 
-    item_historico = get_object_or_404(Historico, id=id) 
+    item_historico = get_object_or_404(Historico, slug=slug) 
 
     if request.method == 'POST':
         form = HistoricoForm(request.POST, instance=item_historico)
 
         if form.is_valid():
             # NOTE: NÃO ME REMOVA
-            item_historico = get_object_or_404(Historico, id=id) 
+            item_historico = get_object_or_404(Historico, slug=slug) 
 
             historico = form.save(commit=False)
             historico.nome_usuario = item_historico.nome_usuario

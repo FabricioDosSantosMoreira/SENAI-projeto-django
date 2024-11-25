@@ -95,10 +95,10 @@
             <td>{{ item.observacao }}</td>
             <td>
               <div class="row table-buttons">
-                <a class="table-update-button" href="{% url 'atualizar_item_historico' item.id %}">
+                <a class="table-update-button" href="{% url 'atualizar_item_historico' item.slug %}">
                   <img src="{% static 'img/icons/icons8-update.png' %}" alt="Editar" />
                 </a>
-                <a class="table-delete-button deleteButton" onclick="toggleDeletionPopUp(this)" data-url="{% url 'deletar_item_historico' item.id %}">
+                <a class="table-delete-button deleteButton" onclick="toggleDeletionPopUp(this)" data-url="{% url 'deletar_item_historico' item.slug %}">
                   <img src="{% static 'img/icons/icons8-trash.png' %}" alt="Remover" />
                 </a>
               </div>

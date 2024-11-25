@@ -79,10 +79,10 @@
             <td>{{ equipamento.validade }}</td>
             <td>
               <div class="row table-buttons">
-                <a class="table-update-button" href="{% url 'atualizar_equipamento' equipamento.id %}">
+                <a class="table-update-button" href="{% url 'atualizar_equipamento' equipamento.slug %}">
                   <img src="{% static 'img/icons/icons8-update.png' %}" alt="Editar" />
                 </a>
-                <a class="table-delete-button deleteButton" data-url="{% url 'deletar_equipamento' equipamento.id %}" onclick="toggleDeletionPopUp(this)">
+                <a class="table-delete-button deleteButton" data-url="{% url 'deletar_equipamento' equipamento.slug %}" onclick="toggleDeletionPopUp(this)">
                   <img src="{% static 'img/icons/icons8-trash.png' %}" alt="Remover" />
                 </a>
               </div>
